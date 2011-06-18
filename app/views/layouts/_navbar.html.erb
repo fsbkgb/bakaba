@@ -1,0 +1,19 @@
+<% cache 'navbar' do %>
+<span class="navbar">
+<% @categories.each do |category| %> 
+[
+<% Board.find(:conditions => {:category_id => category.id, :hidden => false}).asc(:abbreviation).each do |board| %>		
+	/<%= link_to board.abbreviation, board_path(board), {:title => board.title} %>/		
+<% end %>
+]
+&ndash;
+<% end %>
+[<%= link_to 'Home', root_path %>
+/
+<%= link_to 'Rules', rules_path %>
+/
+<%= link_to 'Help', help_path %>
+/
+<%= link_to 'Contact', contact_path %>]
+</span>
+<% end %>

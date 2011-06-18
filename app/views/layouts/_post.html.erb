@@ -1,0 +1,40 @@
+<%= link_to image_tag('/images/del.png'), target, :confirm => 'Are you sure?', :method => :delete %>
+<% if target.phash?  %>
+  <span class="id">
+    <span style="background: #<%= target.phash[0, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[6, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[12, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[18, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[24, 6] %>;">&nbsp;&nbsp;</span>
+  </span>
+<% else %>
+  <% if target.author? %>
+    <% if target.author == 'mod' %>
+	  <span class="mod_tag"><%= $mod_tag %></span>
+    <% else %>
+	  <span class="admin_tag"><%= $adm_tag %></span>
+    <% end %>
+  <% end %>
+<% end %>
+<% if oppost == true %>
+	<span class="posttitle"><%= target.title %></span>
+<% end %>
+<%= target.created_at %>
+<span class="reflink" id="<%= target.number %>">		
+	<a href="<%= path_pfx %>#<%= target.number %>">№</a>
+	<% if path_pfx == "" %>
+		<a href="javascript:insert('to<%= target.number %>')"><%= target.number %></a>
+	<% else %>
+		<a href="<%= path_pfx %>#i<%= target.number %>"><%= target.number %></a>
+	<% end %> 
+</span>
+<% if params[:controller] == 'boards' and oppost == true  %>
+	[<%= link_to "Show" , target %>]
+<% end %>
+<% if target.pic.file?  %>
+	<div class="file">
+		Click on image for full size view (<%= target.pic_file_size/1024 %> kB)
+	</div>
+	<div class="pic">
+		<%= link_to(target.pic.url, :target => "_blank") do %>
+			<%= image_tag target.pic.url(:small) %>
+		<% end %>
+	</div>
+<% end %>
+<div class="content"><%=raw target.content %></div>

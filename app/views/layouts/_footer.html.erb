@@ -1,0 +1,8 @@
+<%= render "layouts/navbar" %>
+<div class="styles">
+		[<a href="#style=Photon" rel="Photon" class="styleswitch">Photon</a> /
+		<a href="#style=Futaba" rel="Futaba" class="styleswitch">Futaba</a> /
+		<a href="#style=Burichan" rel="Burichan" class="styleswitch">Burichan</a>]
+</div>
+<div class="credits"><%= link_to 'Bakaba 0.3.5', 'http://github.com/fsbkgb/bakaba' %></div>
+<%= debug(params) if Rails.env.development? %>

@@ -1,0 +1,22 @@
+<div class="wrap">
+  <div class="boardname">Bakaba</div>
+  <div class="epigraph">"Lorem ipsum dolor sit popipo"</div>
+  <img src="images/logo.png" width="300" height="300" alt="Logo"/>
+  <div class="pages">
+    <%= link_to 'Rules', rules_path %>
+    <%= link_to 'Help', help_path %>
+    <%= link_to 'Contact', contact_path %>
+  </div>
+  <hr />
+
+			<% @categories.each do |category| %> 
+			<div class="boardlist"> 
+			<div class="category"><%= category.name %></div>
+				<ul>	
+					<% Board.find(:conditions => {:category_id => category.id, :hidden => false}).asc(:abbreviation).each do |board| %>
+						<li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board_path(board) %></li>			
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+</div>

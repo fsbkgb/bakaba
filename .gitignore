@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+public/mongo/*
+public/pic/**/*
+public/index.html
+public/contact.html
+public/rules.html
+public/help.html
+*~
+.project
+.DS_Store
+.tmp__*

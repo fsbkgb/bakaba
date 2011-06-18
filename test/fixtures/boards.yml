@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  category: MyString
+  title: MyString
+  abbreviation: MyString
+  anonname: MyString
+  bumplimit: 1
+  maxthreads: 1
+  threadsperpage: 1
+  lastcomments: 1
+  comments: 1
+  hidden: false
+  pcaptcha: false
+  ccaptcha: false
+  textboard: false
+
+two:
+  category: MyString
+  title: MyString
+  abbreviation: MyString
+  anonname: MyString
+  bumplimit: 1
+  maxthreads: 1
+  threadsperpage: 1
+  lastcomments: 1
+  comments: 1
+  hidden: false
+  pcaptcha: false
+  ccaptcha: false
+  textboard: false

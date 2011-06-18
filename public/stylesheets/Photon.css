@@ -1,0 +1,194 @@
+html, body {
+	background-color: #EEEEEE;
+	color: #333333;
+	font-family: "Times", serif;
+}
+
+a {
+	color: #FF6600;
+	background: url('/images/blank.png') no-repeat 100% 4px;
+    padding-right: 13px;
+}
+
+a[href^="http://localhost:3000/"], a[href^="http://www.bakaba.dotcloud.com/"], a[href^="http://github.com/fsbkgb/bakaba"], a[href^="/"], a[href^="#"], a[href^="javascript"] {
+  	background: none;
+    padding-right: 0;
+}
+
+.reflink a{ 
+	color: #333333;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0066FF;
+}
+
+IMG {
+    border: none;
+}
+
+.reply {
+	background:#DDDDDD;
+	border: solid 1px #CCCCCC;
+	padding: 0;
+	margin: 0;
+	margin-top: 3px;
+	min-width: 300px;
+	border-spacing: 2px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.highlight{
+	background:#eedacb;
+	border: dashed 2px #ee6600;
+	padding: 0;
+	margin: 0;
+	margin-top: 3px;
+	min-width: 300px;
+	border-spacing: 2px;
+}
+.pic {
+	float: left;
+	padding: 7px;
+}
+
+.file {
+	font-size: .7em;
+	color:#666666;
+	font-style: italic;
+}
+
+hr {
+	clear:left;
+	border-style: solid none none none;
+	border-width: 1px;
+	border-color: #BBBBBB;
+}
+
+blockquote { 
+	color: #789922;
+	margin-left: 0;
+}
+
+.content {
+	max-height: 400px;
+	overflow: auto;
+}
+
+.posttitle {
+	font-size:1.2em;
+	color:#002244;
+	font-weight: 800;
+}
+
+.pagetitle { 
+	clear: both;
+	color: #ff6600;
+	font-size: 2em;
+	font-weight: 700;
+	text-align: left;
+}
+
+.postarea, .credits {
+	text-align: center;
+}
+
+.postarea table {
+	margin: 0px 0px 0px 31%;
+	text-align: left;
+}
+
+.new_post {
+	display: none;
+}
+
+.styles {
+	text-align: right;
+}
+
+.oppost {
+	clear:left;
+}
+
+.omittedposts { 
+	color: #666666;
+}
+
+.pagination, .navbar, .goback {
+	display: block;
+	padding-bottom: 10px;
+}
+
+.id {
+	font-size: 12px;
+}
+
+.admin_tag {
+	color: #800080;
+	font-weight: 700;
+}
+
+.mod_tag {
+	color: #2266aa;
+	font-weight: 700;
+}
+
+pre code {
+	font-size: 13px;
+}
+
+h1{
+	font-size: 1.3em;
+}
+
+h2{
+	font-size: 1.1em;
+}
+
+h3, h4, h5, h6 {
+	font-size: 1em;
+	margin: 14px 0;
+}
+
+#user_nav {
+	text-align: right;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

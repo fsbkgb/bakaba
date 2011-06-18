@@ -1,0 +1,9 @@
+<%= render "layouts/header" %>
+
+<div class="postarea">
+	<%= render "boards/postform" %>
+</div>
+<p id="notice"><%= notice %></p>
+<%= render "boards/threads" %>
+<%= paginate @posts %>
+<%= render "layouts/footer" %>

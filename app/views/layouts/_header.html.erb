@@ -1,0 +1,11 @@
+<%= render "layouts/navbar" %>
+<div id="user_nav">
+  <% if current_user %>
+    Logged in as <%= current_user.role %>.
+    <%= link_to "Log out", log_out_path %>
+  <% end %>
+</div>
+<div class="pagetitle">
+	/<%= @board.abbreviation %>/ &ndash; <%= @board.title %>
+	<hr />
+</div>

@@ -1,0 +1,24 @@
+<% @posts.each do |post| %>
+<div class="thread" id="thread_<%= post.number %>">
+	<div class="oppost">
+	<%= render "layouts/post", :target => post, :path_pfx => post_path(post), :oppost => true %>
+	</div>
+		<% if Comment.find(:conditions => {:post_id => post.id}).length > $visible_comments+1 %>
+			<% @omcomm = (Comment.find(:conditions => {:post_id => post.id}).length)-$visible_comments %>	
+			<span class="omittedposts"><%= @omcomm %> comments omitted. Click Show to view.</span>			
+			<% @comments = Comment.find(:conditions => {:post_id => post.id}).asc(:number).skip(@omcomm) %>
+		<% else %>
+			<% @comments = Comment.find(:conditions => {:post_id => post.id}).asc(:number) %>
+		<% end %>	
+		<% @comments.each do |comment| %>
+			<table class="reply" id="reply_<%= comment.number %>">
+			 <tr>
+			   <td>
+				<%= render "layouts/post", :target => comment, :path_pfx => post_path(post), :oppost => false %>
+			   </td>
+			 </tr>
+			</table>	
+		<% end %>
+	<hr />
+</div>
+<% end %>

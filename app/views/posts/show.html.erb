@@ -1,0 +1,12 @@
+<%= render "layouts/header" %>
+<span class="goback">
+	[<%= link_to 'Back to Board', @board %>]
+</span>
+<p id="notice"><%= notice %></p>
+<div class="thread">
+	<%= render "posts/thread" %>
+</div>
+<div class="postarea">
+	<%= render "posts/commentform" %>	
+</div>
+<%= render "layouts/footer" %>

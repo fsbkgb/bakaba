@@ -14,8 +14,8 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :role %><br />
-    <%= f.text_field :role %>
+    <%= f.label :role %>
+    <%= f.select(:role, [['mod'], ['adm']]) %>
   </p>
   <p>
     <%= f.label :password %><br />

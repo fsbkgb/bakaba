@@ -7,10 +7,10 @@
     <%= link_to 'Help', help_path %>
     <%= link_to 'Contact', contact_path %>
   </div>
-<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-top:1px solid">
+<table>
   <tbody>
     <tr>
-      <td valign="top">
+      <td>
 			<% @categories.each do |category| %> 
 			<div class="boardlist"> 
 			<div class="category"><%= category.name %></div>

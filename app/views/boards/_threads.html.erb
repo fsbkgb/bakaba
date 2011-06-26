@@ -3,12 +3,12 @@
 	<div class="oppost">
 	<%= render "layouts/post", :target => post, :path_pfx => post_path(post), :oppost => true %>
 	</div>
-		<% if Comment.find(:conditions => {:post_id => post.id}).length > $visible_comments+1 %>
-			<% @omcomm = (Comment.find(:conditions => {:post_id => post.id}).length)-$visible_comments %>	
+		<% if Comment.where(:post_id => post.id).length > $visible_comments+1 %>
+			<% @omcomm = (Comment.where(:post_id => post.id).length)-$visible_comments %>	
 			<span class="omittedposts"><%= @omcomm %> comments omitted. Click Show to view.</span>			
-			<% @comments = Comment.find(:conditions => {:post_id => post.id}).asc(:number).skip(@omcomm) %>
+			<% @comments = Comment.where(:post_id => post.id).asc(:number).skip(@omcomm) %>
 		<% else %>
-			<% @comments = Comment.find(:conditions => {:post_id => post.id}).asc(:number) %>
+			<% @comments = Comment.where(:post_id => post.id).asc(:number) %>
 		<% end %>	
 		<% @comments.each do |comment| %>
 			<table class="reply" id="reply_<%= comment.number %>">

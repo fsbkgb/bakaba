@@ -6,12 +6,12 @@
 <strong><%= category.name %></strong>
 [
     	<%= link_to 'Edit', edit_category_path(category) %>
-		<% if Board.find(:conditions => {:category_id => category.id}).size == 0 %>
+		<% if Board.where(:category_id => category.id).size == 0 %>
 		/
     	<%= link_to 'Destroy', category, :confirm => 'RLY?', :method => :delete %>
 		<% end %>
 ]
-<% if Board.find(:conditions => {:category_id => category.id}).size > 0%>
+<% if Board.where(:category_id => category.id).size > 0%>
 
 <table style="padding-left: 20px">
   <tr>
@@ -27,7 +27,7 @@
     <th></th>
   </tr>
 
-<% Board.find(:conditions => {:category_id => category.id}).asc(:abbreviation).each do |board| %>
+<% Board.where(:category_id => category.id).asc(:abbreviation).each do |board| %>
   <tr>
   	<td><%= board.abbreviation %></td>
     <td><%= board.title %></td>

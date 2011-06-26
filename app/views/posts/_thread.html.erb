@@ -1,6 +1,6 @@
 <%= render "layouts/post", :target => @post, :path_pfx => "", :oppost => true %>
 
-<% Comment.find(:conditions => {:post_id => @post.id}).asc(:number).each do |comment| %>
+<% Comment.where(:post_id => @post.id).asc(:number).each do |comment| %>
 <table class="reply" id="reply_<%= comment.number %>">
  <tr>
    <td>

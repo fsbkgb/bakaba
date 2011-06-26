@@ -2,7 +2,7 @@
 <span class="navbar">
 <% @categories.each do |category| %> 
 [
-<% Board.find(:conditions => {:category_id => category.id, :hidden => false}).asc(:abbreviation).each do |board| %>		
+<% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>		
 	/<%= link_to board.abbreviation, board_path(board), {:title => board.title} %>/		
 <% end %>
 ]

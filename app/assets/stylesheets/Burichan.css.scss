@@ -2,7 +2,6 @@
 @import "variables";
 
 html, body {
-	font-size:12pt;
 	background:#EEF2FF;
 	padding-left:5px;
 	padding-right:5px;
@@ -57,4 +56,10 @@ hr {
 	  family: $serif;
 	   style: italic;
 	 }
+}
+
+.postblock {
+  background:#9988EE;
+  color:#000000;
+  font-weight:800;
 }

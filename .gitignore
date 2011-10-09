@@ -12,3 +12,4 @@ public/help.html
 .project
 .DS_Store
 .tmp__*
+.sass-cache/

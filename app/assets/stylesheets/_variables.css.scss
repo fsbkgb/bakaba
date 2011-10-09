@@ -1,0 +1,126 @@
+$serif: droid serif, liberation serif, "Georgia", "Times New Roman", "Times", serif;
+$sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
+
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin reply{
+  padding: 0;
+  margin: 0;
+  margin-top: 3px;
+  min-width: 300px;
+  border-spacing: 2px;
+}
+
+.pagination, .navbar, .goback {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.id {
+  font-size: 12px;
+}
+
+.admin_tag {
+  color: #800080;
+  font-weight: 700;
+}
+
+.mod_tag {
+  color: #2266aa;
+  font-weight: 700;
+}
+
+pre code {
+  font-size: 13px;
+}
+
+h1{
+  font-size: 1.3em;
+}
+
+h2{
+  font-size: 1.1em;
+}
+
+h3, h4, h5, h6 {
+  font-size: 1em;
+  margin: 14px 0;
+}
+
+#user_nav {
+  text-align: right;
+}
+
+#notice {
+  color: green;
+}
+
+.postarea, .credits {
+  text-align: center;
+}
+
+.postarea table {
+  margin: 0px 0px 0px 31%;
+  text-align: left;
+}
+
+.new_post {
+  display: none;
+}
+
+.styles {
+  text-align: right;
+}
+
+.oppost {
+  clear:left;
+}
+
+.pic {
+  float: left;
+  padding: 7px;
+}
+
+IMG {
+    border: none;
+}
+
+a[href^="http://localhost:3000/"], a[href^="http://www.bakaba.dotcloud.com/"], a[href^="http://github.com/fsbkgb/bakaba"], a[href^="/"], a[href^="#"], a[href^="javascript"] {
+    background: none;
+    padding-right: 0;
+}
+
+a {
+  background: url('blank.png') no-repeat 100% 4px;
+  padding-right: 13px;
+}
+
+.reflink a{ 
+  font-weight: 700;
+  text-decoration: none;
+}
+
+hr {
+  clear:left;
+}
+
+blockquote { 
+  color: #789922;
+  margin-left: 0;
+}
+
+.content {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.posttitle {
+  font:{
+    size:1.2em;
+    weight: 800;
+  }
+}

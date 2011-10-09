@@ -1,0 +1,69 @@
+/* Photon.css */
+@import "variables";
+
+$orange: #FF6600;
+$black: #333333;
+$gray: #666666;
+$radius: 5px;
+
+html, body {
+	background: #EEEEEE;
+	color:$black ;
+	font: {
+	  family: $serif;
+	}
+}
+
+a {
+  color: $orange;
+  &:hover { color: #0066FF; }
+}
+
+.reflink a{ 
+  color: $black;
+}
+
+.reply {
+  @include reply;
+  @include rounded-corners;
+  background:#DDDDDD;
+  border: solid 1px #CCCCCC;
+}
+
+.highlight{
+  @include reply;
+  background:#eedacb;
+  border: dashed 2px $orange;
+}
+
+.file {
+  color: $gray;
+  font:{
+    size: .7em;
+    style: italic;
+  }
+}
+
+hr {
+  border-style: solid none none none;
+  border-width: 1px;
+  border-color: #BBBBBB;
+}
+
+.posttitle {
+  color:#002244;
+}
+
+.pagetitle { 
+  clear: both;
+  color: $orange;
+  text-align: left;
+  font:{
+    size: 2em;
+    weight: 700;
+  }
+}
+
+.omittedposts { 
+  color: $gray;
+}

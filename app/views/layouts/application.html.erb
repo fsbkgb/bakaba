@@ -1,40 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>Bakaba <%= @title %></title>
-  <% if params[:controller] == 'pages' %>
-	<style type="text/css"> 
-		html, body { background-color:#19202c; font-family: verdana, helvetica, sans-serif; height:100%; font-size: 14px; color: #fff; margin: 0;}
-		a { color: #5d5dff; padding-left: 7px; }
-		a:hover { color: #ff5d82; background-color: transparent; text-decoration: none; }
-		.boardlist ul { padding-left: 5px; margin-top: 2px; text-align:left; }
-		.boardlist li { list-style: none; }
-		.wrap { width: 800px; margin-left: auto; margin-right: auto; text-align:center; }
-		.boardname { color: #ff5d82; font-weight: 900; font-size: 48px; text-shadow: white 1px 1px 1px; text-align: right; }
-		.epigraph { text-align: right; font-size: 14px; font-style: italic;}
-		.category { font-weight: 700; font-size: 18px; }
-		.boardlist { padding: 10px 6px; float: left; }
-		.pages { padding: 8px 0; }
-		.pages a { font-size: 16px; font-weight: 700; text-decoration: none; }
-		table { border: 0; border-top: 1px solid; margin-left: auto; margin-right: auto; }
-		td { vertical-align: top; }
-	</style>
-  <% else %>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/Photon.css" title="Photon" media="screen" />
-	<link rel="alternate stylesheet" type="text/css" href="/stylesheets/Futaba.css" title="Futaba" media="screen" />
-	<link rel="alternate stylesheet" type="text/css" href="/stylesheets/Burichan.css" title="Burichan" media="screen" />
-	<%= javascript_include_tag 'jquery.min.js' %>
-	<%= javascript_include_tag 'jquery-ui' %>
-	<%= javascript_include_tag 'rails' %>
-	<%= javascript_include_tag 'application.js' %>
-	<%= csrf_meta_tag %>
-  <% end %>
-
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Bakaba <%= @title %></title>
+		<% if params[:controller] == 'pages' %>
+		<style type="text/css">
+			html, body {
+				background-color: #19202c;
+				font-family: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
+				height: 100%;
+				font-size: 14px;
+				color: #fff;
+				margin: 0;
+			}
+			a {
+				color: #5d5dff;
+				padding-left: 7px;
+			}
+			a:hover {
+				color: #ff5d82;
+				background-color: transparent;
+				text-decoration: none;
+			}
+			.boardlist ul {
+				padding-left: 5px;
+				margin-top: 2px;
+				text-align: left;
+			}
+			.boardlist li {
+				list-style: none;
+			}
+			.wrap {
+				width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+			}
+			.boardname {
+				color: #ff5d82;
+				font-weight: 900;
+				font-size: 48px;
+				text-shadow: white 1px 1px 1px;
+				text-align: right;
+			}
+			.epigraph {
+				text-align: right;
+				font-size: 14px;
+				font-style: italic;
+			}
+			.category {
+				font-weight: 700;
+				font-size: 18px;
+			}
+			.boardlist {
+				padding: 10px 6px;
+				float: left;
+			}
+			.pages {
+				padding: 8px 0;
+			}
+			.pages a {
+				font-size: 16px;
+				font-weight: 700;
+				text-decoration: none;
+			}
+			table {
+				border: 0;
+				border-top: 1px solid;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			td {
+				vertical-align: top;
+			}
+		</style>
+		<% else %>
+		<%= auto_discovery_link_tag (:css, "/assets/Photon.css", {:title => "Photon", :rel => "stylesheet"}) %>
+		<%= auto_discovery_link_tag (:css, "/assets/Futaba.css", {:title => "Futaba", :rel => "alternate stylesheet"}) %>
+		<%= auto_discovery_link_tag (:css, "/assets/Burichan.css", {:title => "Burichan", :rel => "alternate stylesheet"}) %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tag %>
+		<% end %>
+	</head>
+	<body>
+		<%= yield %>
+	</body>
 </html>

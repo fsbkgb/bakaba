@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
+gem "rails", "3.1.0"
 gem 'json'
-gem 'sass-rails', "~> 3.1.0.rc"
-gem 'coffee-script'
+gem 'sass-rails', "  ~> 3.1.0"
+gem 'coffee-rails', "~> 3.1.0"
 gem 'uglifier'
 gem 'execjs'
 gem 'therubyracer'

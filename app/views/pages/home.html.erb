@@ -1,7 +1,7 @@
 <div class="wrap">
   <div class="boardname">Bakaba</div>
   <div class="epigraph">"Lorem ipsum dolor sit popipo"</div>
-  <img src="images/logo.png" width="300" height="300" alt="Logo"/>
+  <%= image_tag("logo.png", :size => "300x300", :alt => "logo")%>
   <div class="pages">
     <%= link_to 'Rules', rules_path %>
     <%= link_to 'Help', help_path %>

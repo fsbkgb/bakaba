@@ -17,9 +17,9 @@ class Comment
   index :number
   
   referenced_in :post, :inverse_of => :comments
-    
+  
   has_mongoid_attached_file :pic, :styles => { :small => "180x180>" },
-                    :url  => "/pic/:style/:filename"
+                    :url  => "/pic/:board/:style/:filename"
   validates_attachment_size :pic, :less_than => 5.megabytes
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   

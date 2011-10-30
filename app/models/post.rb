@@ -24,7 +24,7 @@ class Post
   acts_as_sluggable :generate_from => :slug
   
   has_mongoid_attached_file :pic,	:styles => { :small => "220x220>" },
-									:url  => "/pic/:style/:filename"
+									:url  => "/pic/:board/:style/:filename"
   validates_attachment_size :pic, :less_than => 5.megabytes
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   

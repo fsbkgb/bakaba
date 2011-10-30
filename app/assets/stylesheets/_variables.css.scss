@@ -89,13 +89,13 @@ IMG {
     border: none;
 }
 
-a[href^="http://localhost:3000/"], a[href^="http://www.bakaba.dotcloud.com/"], a[href^="http://github.com/fsbkgb/bakaba"], a[href^="/"], a[href^="#"], a[href^="javascript"] {
+a[href^="http://localhost:3000/"], a[href^="http://bakaba-ct65d25r.dotcloud.com/"], a[href^="http://github.com/fsbkgb/bakaba"], a[href^="/"], a[href^="#"], a[href^="javascript"] {
     background: none;
     padding-right: 0;
 }
 
 a {
-  background: url('blank.png') no-repeat 100% 4px;
+  background: url('/assets/blank.png') no-repeat 100% 4px;
   padding-right: 13px;
 }
 

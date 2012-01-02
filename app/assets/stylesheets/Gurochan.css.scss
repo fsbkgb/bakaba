@@ -1,0 +1,71 @@
+/* Gurochan.css */
+@import "variables";
+$link: rgb(52, 52, 92);
+$border: rgb(202, 146, 123);
+$mainbackground: rgb(237, 218, 210);
+$replybackground: rgb(217, 175, 158);
+
+html, body {
+  background:$mainbackground;
+  color: black;
+  font: {
+    family: $sans;
+    size: 13px;
+  }
+}
+
+a {
+  color:$link;
+  &:hover { color: rgb(221, 0, 0); }
+}
+
+.reflink a{ 
+  color:$link;
+  &:hover { color: rgb(128, 0, 0); }
+}
+
+.reply {
+  @include reply;
+  background:$replybackground;
+  border: solid 1px $border;
+}
+
+.highlight{
+  @include reply;
+  background:$mainbackground;
+}
+
+.file {
+  font:{
+    size: 10pt;
+  }
+}
+
+.posttitle {
+  color:rgb(15, 12, 93);
+}
+
+.pagetitle { 
+  color: rgb(175, 10, 15);
+  font-size: 24pt;
+  text-align: center;
+}
+
+hr {
+  border-style: solid none none none;
+  border-width: 1px;
+  border-color: black;
+}
+
+input, textarea {
+ background-color: #E6CBC0;
+ border: 1px solid $border;
+}
+
+.postblock {
+ background: $replybackground;
+ border: 1px solid $border;
+ color: black;
+ font-weight: bold;
+ padding: 2px 5px 2px 5px;
+}

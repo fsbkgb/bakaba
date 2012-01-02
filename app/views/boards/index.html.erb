@@ -15,15 +15,15 @@
     <table style="padding-left: 20px">
       <tr>
         <th>Abbreviation</th>
-          <th>Title</th>
-          <th>Maxthreads</th>
-          <th>Comments</th>
-          <th>Hidden</th>
-          <th>Pcaptcha</th>
-          <th>Ccaptcha</th>
-          <th></th>
-          <th></th>
-           <th></th>
+        <th>Title</th>
+        <th>Maxthreads</th>
+        <th>Comments</th>
+        <th>Hidden</th>
+        <th>Pcaptcha</th>
+        <th>Ccaptcha</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     <% Board.where(:category_id => category.id).asc(:abbreviation).each do |board| %>
       <tr>

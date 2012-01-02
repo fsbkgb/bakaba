@@ -18,10 +18,12 @@ class Board
 
   acts_as_sluggable :generate_from => :abbreviation
 
+  abbr_regex = /^\w{1,3}$/
+
   validates :title,  :presence => true,
                      :length => { :maximum => 30 }
   validates :abbreviation,  :presence => true,
-                            :length => { :maximum => 3 },
+                            :format => { :with => abbr_regex },
                             :uniqueness => { :case_sensitive => false }
 
 end

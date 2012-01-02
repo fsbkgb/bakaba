@@ -3,26 +3,22 @@
   <%= f.hidden_field :post_slug, :value => @post.slug %>
   <table class="commentform">
     <tr>
-      <td>Comment:</td>
+      <td class="postblock">Comment:</td>
       <td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
     </tr>
-    <% if @board.ccaptcha? %>
-      <tr>
-        <td>Verification: </td>
-        <td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
-      </tr>
-    <% end %>
+  <% if @board.ccaptcha? %>
     <tr>
-      <td>File:</td>
-      <td><%= f.file_field :pic %></td>
+      <td class="postblock">Verification: </td>
+      <td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
     </tr>
-   <tr>   
-      <td>Password:</td>
+  <% end %>
+    <tr>
+      <td class="postblock">File:</td>
+      <td><%= f.file_field :pic %> <%= f.submit %></td>
+    </tr>
+    <tr>   
+      <td class="postblock">Password:</td>
       <td><%= f.password_field :password, :value => cookies[:password], :size => 6 %> <%= f.check_box :show_id %> show hash</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><%= f.submit %></td>
     </tr>
   </table>
 <% end %>

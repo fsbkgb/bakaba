@@ -1,45 +1,45 @@
+/* Futaba.css */
 @import "variables";
 $radius: 5px;
-
+$replybackground: #F0E0D6;
+$maincolor: #800000;
 
 html, body {
-	background:#FFFFEE;
-	color:#800000;
+  background:#FFFFEE;
+  color:$maincolor;
   font: {
     family: $sans;
   }
 }
 
 a {
-	color:#0000EE;
+  color:#0000EE;
   &:hover { color: #DD0000; }
 }
 
 .reflink a{ 
-	color:#800000;
+  color:$maincolor;
 }
 
 .reply {
   @include reply;
   @include rounded-corners;
-	background:#F0E0D6;
-	color:#800000;
-	border: solid 1px #F0D0B6;
+  background:$replybackground;
+  border: solid 1px #F0D0B6;
 }
 
 .highlight{
   @include reply;
   @include rounded-corners;
-	background:#F0E0D6;
-	border: dashed 2px #eeaa88;
+  background:$replybackground;
+  border: dashed 2px #eeaa88;
 }
 
 .file {
-  color:#800000;
-	font:{
-	  size: .7em;
-	  style: italic;
-	}
+  font:{
+    size: .7em;
+    style: italic;
+  }
 }
 
 .posttitle {
@@ -50,10 +50,14 @@ a {
   clear:both;
   text-align:center;
   font-size:2em;
-  color:#800000;
   width:100%;
 }
 
 .omittedposts { 
-	color: #707070;
+  color: #707070;
+}
+
+.postblock {
+  background:#EEAA88;
+  font-weight:800;
 }

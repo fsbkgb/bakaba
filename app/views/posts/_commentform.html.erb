@@ -1,29 +1,29 @@
 <hr />
 <%= form_for [@post, Comment.new], :html => { :multipart => true } do |f| %>
-<%= f.hidden_field :post_slug, :value => @post.slug %>
-<table class="commentform">
-<tr>
-	<td>Comment:</td>
-	<td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
-</tr>
-<% if @board.ccaptcha? %>
-	<tr>
-		<td>Verification: </td>
-		<td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
-	</tr>
-<% end %>
-<tr>
-	<td>File:</td>
-	<td><%= f.file_field :pic %></td>
-</tr>
-<tr>   
-	<td>Password:</td>
-	<td><%= f.password_field :password, :value => cookies[:password], :size => 6 %> <%= f.check_box :show_id %> show hash</td>
-</tr>
-<tr>
-	<td></td>
-	<td><%= f.submit %></td>
-</tr>
-</table>
+  <%= f.hidden_field :post_slug, :value => @post.slug %>
+  <table class="commentform">
+    <tr>
+      <td>Comment:</td>
+      <td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
+    </tr>
+    <% if @board.ccaptcha? %>
+      <tr>
+        <td>Verification: </td>
+        <td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>File:</td>
+      <td><%= f.file_field :pic %></td>
+    </tr>
+   <tr>   
+      <td>Password:</td>
+      <td><%= f.password_field :password, :value => cookies[:password], :size => 6 %> <%= f.check_box :show_id %> show hash</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit %></td>
+    </tr>
+  </table>
 <% end %>
 <hr />

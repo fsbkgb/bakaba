@@ -3,56 +3,52 @@
 <small>Boards: <%= @boards.size %> Threads: <%= @posts.size %> Posts: <%= @posts.size+@comments.size %></small>
 <hr />
 <% @categories.each do |category| %> 
-<strong><%= category.name %></strong>
-[
-    	<%= link_to 'Edit', edit_category_path(category) %>
-		<% if Board.where(:category_id => category.id).size == 0 %>
-		/
-    	<%= link_to 'Destroy', category, :confirm => 'RLY?', :method => :delete %>
-		<% end %>
-]
-<% if Board.where(:category_id => category.id).size > 0%>
-
-<table style="padding-left: 20px">
-  <tr>
-    <th>Abbreviation</th>
-    <th>Title</th>
-    <th>Maxthreads</th>
-    <th>Comments</th>
-    <th>Hidden</th>
-    <th>Pcaptcha</th>
-    <th>Ccaptcha</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% Board.where(:category_id => category.id).asc(:abbreviation).each do |board| %>
-  <tr>
-  	<td><%= board.abbreviation %></td>
-    <td><%= board.title %></td>
-    <td><%= board.maxthreads %></td>
-    <td><%= board.comments %></td>
-    <td><%= board.hidden %></td>
-    <td><%= board.pcaptcha %></td>
-    <td><%= board.ccaptcha %></td>
-    <td>[ <%= link_to 'Show', board %> /</td>
-    <td><%= link_to 'Edit', edit_board_path(board) %> /</td>
-    <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %> ]</td>
-  </tr>
+  <strong><%= category.name %></strong>
+  [
+   <%= link_to 'Edit', edit_category_path(category) %>
+  <% if Board.where(:category_id => category.id).size == 0 %>
+    /
+    <%= link_to 'Destroy', category, :confirm => 'RLY?', :method => :delete %>
+  <% end %>
+  ]
+  <% if Board.where(:category_id => category.id).size > 0%>
+    <table style="padding-left: 20px">
+      <tr>
+        <th>Abbreviation</th>
+          <th>Title</th>
+          <th>Maxthreads</th>
+          <th>Comments</th>
+          <th>Hidden</th>
+          <th>Pcaptcha</th>
+          <th>Ccaptcha</th>
+          <th></th>
+          <th></th>
+           <th></th>
+      </tr>
+    <% Board.where(:category_id => category.id).asc(:abbreviation).each do |board| %>
+      <tr>
+  	    <td><%= board.abbreviation %></td>
+        <td><%= board.title %></td>
+        <td><%= board.maxthreads %></td>
+        <td><%= board.comments %></td>
+        <td><%= board.hidden %></td>
+        <td><%= board.pcaptcha %></td>
+        <td><%= board.ccaptcha %></td>
+        <td>[ <%= link_to 'Show', board %> /</td>
+        <td><%= link_to 'Edit', edit_board_path(board) %> /</td>
+        <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %> ]</td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+  <hr />
 <% end %>
-</table>
-<% end %>
-<hr />
-<% end %>
-
-
 <br />
 [ 
 <%= link_to 'Home', root_path %> /
 <%= link_to 'New Category', new_category_path %>
 <% if @categories.size > 0 %>
-/
-<%= link_to 'New Board', new_board_path %>
+  /
+  <%= link_to 'New Board', new_board_path %>
 <% end %>
 ]

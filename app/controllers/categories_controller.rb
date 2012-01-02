@@ -1,17 +1,15 @@
 class CategoriesController < ApplicationController
-
   def new
     @category = Category.new
-	@title = "| New Category"
+    @title = "| New Category"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @boards }
     end
   end
 
-
   def edit
-  	@title = "| Edit Category"
+    @title = "| Edit Category"
     @category = Category.find(params[:id])
   end
 
@@ -42,7 +40,6 @@ class CategoriesController < ApplicationController
       end
     end
   end
-
 
   def destroy
     @category = Category.find(params[:id])

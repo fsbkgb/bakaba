@@ -1,21 +1,20 @@
 class PagesController < ApplicationController
-  
+
   caches_page :home, :help, :rules, :contact
-  
   def home
     @categories = Category.all
   end
 
   def help
-  	@title = "| Help"
+    @title = "| Help"
   end
-  
+
   def rules
-  	@title = "| Rules"
+    @title = "| Rules"
   end
-  
+
   def contact
-  	@title = "| Contact"
+    @title = "| Contact"
   end
 
 end

@@ -2,30 +2,30 @@
 	[<a href="#" class="nthread">New Thread</a>]
 </div>
 <%= form_for [@board, Post.new], :html => { :multipart => true } do |f| %>
-<%= f.hidden_field :board_abbreviation, :value => @board.abbreviation %>
-<table>
-<tr>   
-    <td>Title: </td>
-    <td><%= f.text_field :title %> <%= f.submit %></td>
-</tr>
-<tr>
-	<td>Comment: </td>
-	<td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
-</tr>
-<% if @board.pcaptcha? %>
-	<tr>
-		<td>Verification: </td>
-		<td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
-	</tr>
-<% end %>
-<tr>
-	<td>File:</td>
-	<td><%= f.file_field :pic %></td>
-</tr>
-<tr>   
-	<td>Password:</td>
-	<td><%= f.password_field :password, :value => cookies[:password], :size => 6 %> <%= f.check_box :show_id %> show hash</td>
-</tr>
-</table>
+  <%= f.hidden_field :board_abbreviation, :value => @board.abbreviation %>
+  <table>
+    <tr>   
+      <td>Title: </td>
+      <td><%= f.text_field :title %> <%= f.submit %></td>
+    </tr>
+    <tr>
+      <td>Comment: </td>
+      <td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
+    </tr>
+    <% if @board.pcaptcha? %>
+      <tr>
+        <td>Verification: </td>
+        <td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
+      </tr>
+   <% end %>
+    <tr>
+      <td>File:</td>
+      <td><%= f.file_field :pic %></td>
+    </tr>
+    <tr>   
+      <td>Password:</td>
+      <td><%= f.password_field :password, :value => cookies[:password], :size => 6 %> <%= f.check_box :show_id %> show hash</td>
+    </tr>
+  </table>
 <% end %>
 <hr />

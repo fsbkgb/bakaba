@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  
+
   load_and_authorize_resource
- 
   def index
     @users = User.all
   end
@@ -18,11 +17,11 @@ class UsersController < ApplicationController
       render "new"
     end
   end
-  
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
   end
-  
+
 end

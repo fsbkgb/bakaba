@@ -24,13 +24,13 @@ class Comment
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   validate :validates_pic_or_post
-  validates :content,  :length => { :maximum => 2500 }
+  validates :content, :length => { :maximum => 2500 }
 
   pass_regex = /^\w+$/
 
-  validates :password, 	:presence => true,
-  						:length => { :maximum => 15 },
-  						:format     => { :with => pass_regex }
+  validates :password, :presence => true,
+                       :length => { :maximum => 15 },
+                       :format => { :with => pass_regex }
 
   before_post_process :rename_file
   before_create :set_params, :assign_html, :reflinks

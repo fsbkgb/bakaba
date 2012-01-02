@@ -23,7 +23,7 @@ class Post
 
   acts_as_sluggable :generate_from => :slug
 
-  has_mongoid_attached_file :pic,	:styles => { :small => "220x220>" },
+  has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
                                   :url  => "/pic/:board/:style/:filename"
   validates_attachment_size :pic, :less_than => 5.megabytes
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
@@ -34,9 +34,9 @@ class Post
 
   pass_regex = /^\w+$/
 
-  validates :password, 	:presence => true,
-  						:length => { :maximum => 15 },
-  						:format     => { :with => pass_regex }
+  validates :password, :presence => true,
+                       :length => { :maximum => 15 },
+                       :format => { :with => pass_regex }
 
   before_post_process :rename_file
   before_create :set_params, :assign_html, :reflinks

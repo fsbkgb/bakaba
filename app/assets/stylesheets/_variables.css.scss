@@ -89,6 +89,10 @@ IMG {
     border: none;
 }
 
+p {
+  margin: 0.5em;
+}
+
 .reflink a{ 
   font-weight: 700;
   text-decoration: none;
@@ -98,9 +102,8 @@ hr {
   clear:left;
 }
 
-blockquote { 
+.quote { 
   color: #789922;
-  margin-left: 0;
 }
 
 .content {

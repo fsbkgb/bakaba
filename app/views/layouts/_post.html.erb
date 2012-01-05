@@ -19,7 +19,7 @@
 <span class="reflink" id="<%= target.number %>">		
   <a href="<%= path_pfx %>#<%= target.number %>">№</a>
   <% if path_pfx == "" %>
-    <a href="javascript:insert('to<%= target.number %>')"><%= target.number %></a>
+    <a href="javascript:insert('&gt;&gt;<%= target.number %>')"><%= target.number %></a>
   <% else %>
     <a href="<%= path_pfx %>#i<%= target.number %>"><%= target.number %></a>
   <% end %> 

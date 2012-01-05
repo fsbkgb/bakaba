@@ -33,7 +33,7 @@ class Comment
                        :format => { :with => pass_regex }
 
   before_post_process :rename_file
-  before_create :set_params, :assign_html, :reflinks
+  before_create :set_params, :assign_html
   after_create :bump
   def validates_pic_or_post
     errors.add(:comment, " must have text post or picture!") if
@@ -41,7 +41,15 @@ class Comment
   end
 
   def assign_html
-    self.content = RDiscount.new(self.content, :autolink, :filter_html, :filter_styles, :no_image).to_html
+    self.content.gsub!('&', '&amp;')
+    self.content.gsub!('<', '&lt;')
+    self.content.gsub!('>', '&gt;')
+    reflinks
+    self.content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
+    self.content.gsub!(/\n?\[c\]\n*(.+?)\n*\[\/c\]/im, "<pre>\\1</pre>")
+    self.content.gsub! /\r\n/, '<br />'
+    self.content.gsub! /(<br \/>){2,}/, '<br /><br />'
+    self.content="<p>"+self.content+"</p>"
   end
 
   def rename_file
@@ -52,7 +60,7 @@ class Comment
   end
 
   def reflinks
-    self.content.scan(/to\d+/).first(8).each do |x|
+    self.content.scan(/&gt;&gt;\d+/).first(8).each do |x|
       reply_number = x.to_s.match(/\d+/)[0]
       if Post.where(:board_abbreviation => self.board_abbreviation, :number => reply_number).length > 0
         post = Post.where(:board_abbreviation => self.board_abbreviation, :number => reply_number).first
@@ -66,13 +74,13 @@ class Comment
       end
       if reply_found
         reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'"onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
-        self.content = self.content.gsub("to"+reply_number, reply_link)
+        self.content = self.content.gsub("&gt;&gt;"+reply_number, reply_link)
       else
-        self.content = self.content.gsub("to"+reply_number, ">>"+reply_number)
+        self.content = self.content.gsub("&gt;&gt;"+reply_number, "&gt;&gt;"+reply_number)
       end
     end
 
-    self.content.scan(/to\/[a-zA-Z]{1,3}\/\d+/).first(8).each do |x|
+    self.content.scan(/&gt;&gt;\/[a-zA-Z]{1,3}\/\d+/).first(8).each do |x|
       reply_number = x.to_s.match(/\d+/)[0]
       board_abbr = x.to_s.match(/\/[a-zA-Z]{1,3}\//)[0].match(/[a-zA-Z]{1,3}/)[0]
       if Post.where(:board_abbreviation => board_abbr, :number => reply_number).length > 0
@@ -87,9 +95,9 @@ class Comment
       end
       if reply_found
         reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'">&gt;&gt;'+"/"+board_abbr+"/"+reply_number+'</a>'
-        self.content = self.content.gsub("to/"+board_abbr+"/"+reply_number, reply_link)
+        self.content = self.content.gsub("&gt;&gt;/"+board_abbr+"/"+reply_number, reply_link)
       else
-        self.content = self.content.gsub("to/"+board_abbr+"/"+reply_number, ">>"+"/"+board_abbr+"/"+reply_number)
+        self.content = self.content.gsub("&gt;&gt;/"+board_abbr+"/"+reply_number, "&gt;&gt;"+"/"+board_abbr+"/"+reply_number)
       end
     end
   end

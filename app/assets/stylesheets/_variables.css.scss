@@ -34,8 +34,12 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   font-weight: 700;
 }
 
-pre code {
+pre {
   font-size: 13px;
+  font-weight: bold;
+  color: #c4c4c4;
+  background-color: #464646;
+  margin: 0 0.5em;
 }
 
 h1{
@@ -104,6 +108,7 @@ hr {
 
 .quote { 
   color: #789922;
+  margin: 0 0.5em;
 }
 
 .content {

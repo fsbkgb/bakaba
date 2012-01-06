@@ -47,6 +47,10 @@ class Comment
     reflinks
     self.content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
     self.content.gsub!(/\n?\[c\]\n*(.+?)\n*\[\/c\]/im, "<pre>\\1</pre>")
+    self.content.scan(/https?:\/\/[\S]+/i).each do |x|
+      link='<a href="'+x.to_s+'" rel="nofollow">'+x.to_s+'</a>'
+      self.content = self.content.gsub(x.to_s, link)
+    end
     self.content.gsub! /\r\n/, '<br />'
     self.content.gsub! /(<br \/>){2,}/, '<br /><br />'
     self.content="<p>"+self.content+"</p>"

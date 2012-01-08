@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @post = Post.find(@comment.post_slug)
     @comment = @post.comments.new(params[:comment])
     @board = Board.find(@post.board_abbreviation)
+    @comment.content = parse(@comment.content, @board.abbreviation)
     if @board.ccaptcha? && verify_recaptcha(:model => @comment) && @comment.save
       cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
       redirect_to @post

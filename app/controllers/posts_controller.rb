@@ -26,6 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @board = Board.find(@post.board_abbreviation)
     @post = @board.posts.new(params[:post])
+    @post.content = parse(@post.content, @board.abbreviation)
     if @board.pcaptcha? && verify_recaptcha(:model => @post) && @post.save
       cookies[:password] = { :value => @post.password, :expires => Time.now + 2600000}
       redirect_to @post

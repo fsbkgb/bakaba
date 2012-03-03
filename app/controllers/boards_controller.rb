@@ -1,7 +1,8 @@
 class BoardsController < ApplicationController
   
-  load_and_authorize_resource
-
+#  load_and_authorize_resource
+#  caches_action :show
+  
   def index
   	@title = "| Boards"
     @boards = Board.all
@@ -16,7 +17,7 @@ class BoardsController < ApplicationController
 
   def show
     @categories = Category.all
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
     @posts = @board.posts.where(:board_id => @board.id).order_by([:bump, :DESCENDING]).page(params[:page]).per($threads_on_page)
     @title = "| "+@board.title
     respond_to do |format|
@@ -72,7 +73,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
     @board.destroy
 
     respond_to do |format|

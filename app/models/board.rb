@@ -1,6 +1,7 @@
 class Board
 
   include Mongoid::Document
+  include Mongoid::Slug
 
   field :category
   field :title
@@ -16,7 +17,7 @@ class Board
   referenced_in :category, :inverse_of => :boards
   references_many :posts, :dependent => :destroy
 
-  acts_as_sluggable :generate_from => :abbreviation
+  slug :abbreviation
 
   abbr_regex = /^\w{1,3}$/
 

@@ -2,6 +2,8 @@ class Post
 
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Slug
+  
   field :title
   field :content
   field :number, :type => Integer
@@ -21,7 +23,7 @@ class Post
   referenced_in :board, :inverse_of => :posts
   references_many :comments, :dependent => :destroy
 
-  acts_as_sluggable :generate_from => :slug
+  slug :board_abbreviation, :number, :as => :name
 
   has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
                                   :url  => "/pic/:board/:style/:filename"
@@ -56,23 +58,22 @@ class Post
 
   def set_params
     self.bump = Time.now
-    board = Board.find(self.board_abbreviation)
+    board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
-    self.slug = board.abbreviation+'-'+(self.number).to_s
     board.update_attributes(:comments => board.comments + 1)
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
     if self.show_id == true
       if User.current
         self.author = User.current.role
       else
-        self.phash = Digest::SHA2.hexdigest(self.password)[0, 30]
+        self.phash = Digest::SHA2.hexdigest(self.password+self.name)[0, 30]
       end
     end
   end
 
   def check_posts_length
-    board = Board.find(self.board_abbreviation)
-    if Post.find(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
+    board = Board.find_by_slug(self.board_abbreviation)
+    if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
       post = Post.find(:conditions => {:board_abbreviation => board.abbreviation}).descending(:bump).last
     post.destroy
     end

@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
 
-#  load_and_authorize_resource
   before_filter :set_current_user
+  
   def create
     @comment = Comment.new(params[:comment])
-    @post = Post.find_by_name(@comment.post_slug)
+    @post = Post.find_by_slug(@comment.post_slug)
     @comment = @post.comments.new(params[:comment])
     @board = Board.find_by_slug(@post.board_abbreviation)
     @comment.content = parse(@comment.content, @board.abbreviation)
@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @post = Post.find_by_name(@comment.post_slug)
+    @post = Post.find_by_slug(@comment.post_slug)
     @password = cookies[:password]
     if current_user
       @comment.destroy

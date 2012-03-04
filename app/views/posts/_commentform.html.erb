@@ -1,6 +1,6 @@
 <hr />
 <%= form_for [@post, Comment.new], :html => { :multipart => true } do |f| %>
-  <%= f.hidden_field :post_slug, :value => @post.name %>
+  <%= f.hidden_field :post_slug, :value => @post.slug %>
   <table class="commentform">
     <tr>
       <td class="postblock">Comment:</td>

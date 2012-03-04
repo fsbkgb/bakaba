@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
 
-#  load_and_authorize_resource
   before_filter :set_current_user
 #  caches_action :show
   
   def show
     @boards = Board.all
     @categories = Category.all
-    @post = Post.find_by_name(params[:id])
+    @post = Post.find_by_slug(params[:id])
     @board = Board.find_by_slug(@post.board_abbreviation)
     if @post.title?
       @title = "| "+@board.title+" | "+@post.title
@@ -47,7 +46,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by_name(params[:id])
+    @post = Post.find_by_slug(params[:id])
     @board = Board.find_by_slug(@post.board_abbreviation)
     @password = cookies[:password]
     if current_user

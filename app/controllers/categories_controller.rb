@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+  
+  before_filter :set_current_user
+  load_and_authorize_resource
+  
   def new
     @category = Category.new
     @title = "| New Category"

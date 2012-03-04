@@ -23,7 +23,7 @@ class Post
   referenced_in :board, :inverse_of => :posts
   references_many :comments, :dependent => :destroy
 
-  slug :board_abbreviation, :number, :as => :name
+  slug :slug
 
   has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
                                   :url  => "/pic/:board/:style/:filename"
@@ -60,13 +60,14 @@ class Post
     self.bump = Time.now
     board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
+    self.slug = board.abbreviation+'-'+(self.number).to_s
     board.update_attributes(:comments => board.comments + 1)
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
     if self.show_id == true
       if User.current
         self.author = User.current.role
       else
-        self.phash = Digest::SHA2.hexdigest(self.password+self.name)[0, 30]
+        self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
       end
     end
   end

@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   
-#  load_and_authorize_resource
+  before_filter :set_current_user
+  load_and_authorize_resource :find_by => :slug
 #  caches_action :show
   
   def index

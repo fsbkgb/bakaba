@@ -34,8 +34,12 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   font-weight: 700;
 }
 
-pre code {
+pre {
   font-size: 13px;
+  font-weight: bold;
+  color: #c4c4c4;
+  background-color: #464646;
+  margin: 0 0.5em;
 }
 
 h1{
@@ -72,6 +76,10 @@ h3, h4, h5, h6 {
   display: none;
 }
 
+.newthread {
+  margin: 8px 0px;
+}
+
 .styles {
   text-align: right;
 }
@@ -89,14 +97,8 @@ IMG {
     border: none;
 }
 
-a[href^="http://localhost:3000/"], a[href^="http://bakaba-ct65d25r.dotcloud.com/"], a[href^="http://github.com/fsbkgb/bakaba"], a[href^="/"], a[href^="#"], a[href^="javascript"] {
-    background: none;
-    padding-right: 0;
-}
-
-a {
-  background: url('/assets/blank.png') no-repeat 100% 4px;
-  padding-right: 13px;
+p {
+  margin: 0.5em;
 }
 
 .reflink a{ 
@@ -106,11 +108,12 @@ a {
 
 hr {
   clear:left;
+  margin: 8px 0px;
 }
 
-blockquote { 
+.quote { 
   color: #789922;
-  margin-left: 0;
+  margin: 0 0.5em;
 }
 
 .content {

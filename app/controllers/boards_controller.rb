@@ -2,7 +2,6 @@ class BoardsController < ApplicationController
   
   before_filter :set_current_user
   load_and_authorize_resource :find_by => :slug
-#  caches_action :show
   
   def index
   	@title = "| Boards"
@@ -55,6 +54,8 @@ class BoardsController < ApplicationController
     end
     expire_page ("/index")
     expire_fragment("navbar")
+    expire_fragment('goback_to_'+@board.abbreviation)
+    expire_fragment('title_'+@board.abbreviation)
   end
 
   def update
@@ -71,6 +72,8 @@ class BoardsController < ApplicationController
     end
     expire_page ("/index")
     expire_fragment("navbar")
+    expire_fragment('goback_to_'+@board.abbreviation)
+    expire_fragment('title_'+@board.abbreviation)
   end
 
   def destroy

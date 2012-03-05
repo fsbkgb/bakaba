@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
   before_filter :set_current_user
-#  caches_action :show
   
   def show
     @boards = Board.all

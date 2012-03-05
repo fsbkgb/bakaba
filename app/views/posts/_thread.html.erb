@@ -1,3 +1,4 @@
+<% cache 'full-thread_'+@post.slug do %>
 <%= render "layouts/post", :target => @post, :path_pfx => "", :oppost => true %>
 <% Comment.where(:post_id => @post.id).asc(:number).each do |comment| %>
   <table class="reply" id="reply_<%= comment.number %>">
@@ -7,4 +8,5 @@
       </td>
     </tr>
   </table>
+<% end %>
 <% end %>

@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
     @comment.content = parse(@comment.content, @board.abbreviation)
     if @board.ccaptcha? && verify_recaptcha(:model => @comment) && @comment.save
       cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
+      expire_fragment('thread_'+@post.slug)
+      expire_fragment('full-thread_'+@post.slug)
       redirect_to @post
     else
       if @board.ccaptcha?
@@ -17,6 +19,8 @@ class CommentsController < ApplicationController
       else
         if @comment.save
           cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
+          expire_fragment('thread_'+@post.slug)
+          expire_fragment('full-thread_'+@post.slug)
           redirect_to @post
         else
           render "err"

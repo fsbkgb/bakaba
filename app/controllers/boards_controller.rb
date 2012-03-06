@@ -83,7 +83,7 @@ class BoardsController < ApplicationController
       format.xml  { head :ok }
     end
     expire_page ("/index")
-    expire_fragment("navbar"
+    expire_fragment("navbar")
     expire_fragment('goback_to_'+@board.abbreviation)
     expire_fragment('title_'+@board.abbreviation)
   end

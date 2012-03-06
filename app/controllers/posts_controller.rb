@@ -50,15 +50,22 @@ class PostsController < ApplicationController
     @password = cookies[:password]
     if current_user
       @post.destroy
+      update_cache
       redirect_to board_path(@board), :notice => 'Post was successfully deleted.'
     else
       if @password == @post.password
         @post.destroy
+        update_cache
         redirect_to board_path(@board), :notice => 'Post was successfully deleted.'
       else
         redirect_to post_path(@post), :notice => 'You cannot delete this post.'
       end
     end    
   end
-           
+
+def update_cache
+    expire_fragment('thread_'+@post.slug)
+    expire_fragment('full-thread_'+@post.slug)
+  end
+
 end

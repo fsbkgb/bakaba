@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
     @comment.content = parse(@comment.content, @board.abbreviation)
     if @board.ccaptcha? && verify_recaptcha(:model => @comment) && @comment.save
       cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
-      expire_fragment('thread_'+@post.slug)
-      expire_fragment('full-thread_'+@post.slug)
+      update_cache
       redirect_to @post
     else
       if @board.ccaptcha?
@@ -19,8 +18,7 @@ class CommentsController < ApplicationController
       else
         if @comment.save
           cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
-          expire_fragment('thread_'+@post.slug)
-          expire_fragment('full-thread_'+@post.slug)
+          update_cache
           redirect_to @post
         else
           render "err"
@@ -35,15 +33,22 @@ class CommentsController < ApplicationController
     @password = cookies[:password]
     if current_user
       @comment.destroy
+      update_cache
       redirect_to @post, :notice => 'Post was successfully deleted.'
     else
       if @password == @comment.password
         @comment.destroy
+        update_cache
         redirect_to @post, :notice => 'Post was successfully deleted.'
       else
         redirect_to @post, :notice => 'You cannot delete this post.'
       end
     end
+  end
+  
+  def update_cache
+    expire_fragment('thread_'+@post.slug)
+    expire_fragment('full-thread_'+@post.slug)
   end
 
 end

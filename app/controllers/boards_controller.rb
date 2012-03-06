@@ -54,8 +54,6 @@ class BoardsController < ApplicationController
     end
     expire_page ("/index")
     expire_fragment("navbar")
-    expire_fragment('goback_to_'+@board.abbreviation)
-    expire_fragment('title_'+@board.abbreviation)
   end
 
   def update
@@ -70,10 +68,7 @@ class BoardsController < ApplicationController
         format.xml  { render :xml => @board.errors, :status => :unprocessable_entity }
       end
     end
-    expire_page ("/index")
-    expire_fragment("navbar")
-    expire_fragment('goback_to_'+@board.abbreviation)
-    expire_fragment('title_'+@board.abbreviation)
+    update_cache
   end
 
   def destroy
@@ -84,7 +79,14 @@ class BoardsController < ApplicationController
       format.html { redirect_to(boards_url) }
       format.xml  { head :ok }
     end
+    update_cache
+  end
+  
+  def update_cache
     expire_page ("/index")
     expire_fragment("navbar")
+    expire_fragment('goback_to_'+@board.abbreviation)
+    expire_fragment('title_'+@board.abbreviation)
   end
+  
 end

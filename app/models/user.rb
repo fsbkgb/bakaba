@@ -3,9 +3,7 @@ class User
   field :name
   field :role
   field :password
-  
-  attr_accessible :name, :role, :password
-  
+    
   cattr_accessor :current_user
   
   validates :name,  :presence => true,

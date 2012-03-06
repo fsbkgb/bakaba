@@ -1,4 +1,5 @@
 <% @posts.each do |post| %>
+<% cache 'thread_'+post.slug do %>
 <div class="thread" id="thread_<%= post.number %>">
 	<div class="oppost">
 	<%= render "layouts/post", :target => post, :path_pfx => post_path(post), :oppost => true %>
@@ -21,4 +22,5 @@
 		<% end %>
 	<hr />
 </div>
+<% end %>
 <% end %>

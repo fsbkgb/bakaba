@@ -59,6 +59,10 @@ h3, h4, h5, h6 {
   color: green;
 }
 
+.newthread {
+  margin: 8px 0px;
+}
+
 .postarea, .credits {
   text-align: center;
 }
@@ -85,7 +89,7 @@ h3, h4, h5, h6 {
   padding: 7px;
 }
 
-IMG {
+img {
     border: none;
 }
 
@@ -106,6 +110,7 @@ a {
 
 hr {
   clear:left;
+  margin: 8px 0px;
 }
 
 blockquote { 

@@ -37,7 +37,7 @@ class BoardsController < ApplicationController
 
   def edit
   	@title = "| Edit Board"
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
   end
 
   def create
@@ -57,7 +57,7 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
 
     respond_to do |format|
       if @board.update_attributes(params[:board])

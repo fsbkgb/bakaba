@@ -75,7 +75,7 @@ class Post
   def check_posts_length
     board = Board.find_by_slug(self.board_abbreviation)
     if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
-      post = Post.find(:conditions => {:board_abbreviation => board.abbreviation}).descending(:bump).last
+      post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:bump).last
     post.destroy
     end
   end

@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
   def settings
     $adm_tag = '## Admin ##'
     $mod_tag = '## Mod ##'
-    $threads_on_page = 20
+    $threads_on_page = 8
     $bumplimit = 500
     $visible_comments = 5
   end

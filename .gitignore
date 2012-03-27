@@ -13,3 +13,4 @@ public/help.html
 .DS_Store
 .tmp__*
 .sass-cache/
+.idea/

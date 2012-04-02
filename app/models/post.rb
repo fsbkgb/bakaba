@@ -2,6 +2,8 @@ class Post
   
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Slug
+
   field :title
   field :content
   field :number, :type => Integer
@@ -21,10 +23,10 @@ class Post
   referenced_in :board, :inverse_of => :posts
   references_many :comments, :dependent => :destroy
     
-  acts_as_sluggable :generate_from => :slug
+  slug :slug
   
   has_mongoid_attached_file :pic,	:styles => { :small => "220x220>" },
-									:url  => "/pic/:board/:style/:filename"
+	                                :url  => "/pic/:board/:style/:filename"
   validates_attachment_size :pic, :less_than => 5.megabytes
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
@@ -60,7 +62,7 @@ class Post
   
   def set_params
     self.bump = Time.now
-    board = Board.find(self.board_abbreviation)
+    board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
     self.slug = board.abbreviation+'-'+(self.number).to_s
     board.update_attributes(:comments => board.comments + 1)
@@ -118,7 +120,7 @@ class Post
   end
   
   def check_posts_length
-     board = Board.find(self.board_abbreviation) 
+     board = Board.find_by_slug(self.board_abbreviation) 
      if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
         post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:bump).last
         post.destroy

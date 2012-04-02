@@ -1,10 +1,10 @@
 class BoardsController < ApplicationController
   
-  load_and_authorize_resource
   before_filter :set_current_user
-
+  load_and_authorize_resource :find_by => :slug
+  
   def index
-  	@title = "| Boards"
+    @title = "| Boards"
     @boards = Board.all
     @posts = Post.all
     @comments = Comment.all
@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
 
   def show
     @categories = Category.all
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
     @posts = @board.posts.where(:board_id => @board.id).order_by([:bump, :DESCENDING]).page(params[:page]).per($threads_on_page)
     @title = "| "+@board.title
     respond_to do |format|
@@ -27,7 +27,7 @@ class BoardsController < ApplicationController
   end
 
   def new
-  	@title = "| New Board"
+    @title = "| New Board"
     @board = Board.new
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   end
 
   def edit
-  	@title = "| Edit Board"
+    @title = "| Edit Board"
     @board = Board.find_by_slug(params[:id])
   end
 
@@ -72,7 +72,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board = Board.find(params[:id])
+    @board = Board.find_by_slug(params[:id])
     @board.destroy
 
     respond_to do |format|
@@ -88,5 +88,5 @@ class BoardsController < ApplicationController
     expire_fragment('goback_to_'+@board.abbreviation)
     expire_fragment('title_'+@board.abbreviation)
   end
-
+  
 end

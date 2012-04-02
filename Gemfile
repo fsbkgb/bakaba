@@ -9,7 +9,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
-gem 'acts_as_sluggable'
+gem 'mongoid_slug'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem "sanitize"
 gem 'rdiscount'

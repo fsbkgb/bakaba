@@ -97,8 +97,8 @@ class Comment
   end
 
   def set_params
-  	post = Post.find(self.post_slug)
-  	board = Board.find(post.board_abbreviation)
+  	post = Post.find_by_slug(self.post_slug)
+  	board = Board.find_by_slug(post.board_abbreviation)
     self.number = board.comments + 1
     board.update_attributes(:comments => board.comments + 1)    
     self.board_abbreviation = board.abbreviation
@@ -107,14 +107,14 @@ class Comment
       if User.current
         self.author = User.current.role
       else
-        self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
+        self.phash = Digest::SHA2.hexdigest(self.password+post.slug)[0, 30]
       end    
     end
   end
   
   
   def bump
-  	post = Post.find(self.post_slug)
+  	post = Post.find_by_slug(self.post_slug)
   	if post.comments.size < $bumplimit
     	post.update_attributes(:bump => Time.now) 
 	  end 

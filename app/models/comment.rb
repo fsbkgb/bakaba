@@ -107,7 +107,7 @@ class Comment
       if User.current
         self.author = User.current.role
       else
-        self.phash = encrypt(self.password)  
+        self.phash = encrypt(self.password+self.slug)
       end    
     end
   end

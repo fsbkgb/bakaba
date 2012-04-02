@@ -135,14 +135,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
+  bson_ext (~> 1.5)
   cancan
   coffee-rails (~> 3.2.0)
   execjs
   jquery-rails
   json
   kaminari
-  mongoid
+  mongoid (~> 2.4)
   mongoid-paperclip
   mongoid_slug
   rails (= 3.2.0)

@@ -107,14 +107,11 @@ class Comment
       if User.current
         self.author = User.current.role
       else
-        self.phash = encrypt(self.password+self.slug)
+        self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
       end    
     end
   end
   
-  def encrypt(string)
-    Digest::SHA2.hexdigest(string)[0, 30]
-  end
   
   def bump
   	post = Post.find(self.post_slug)

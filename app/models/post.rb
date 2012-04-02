@@ -69,7 +69,7 @@ class Post
       if User.current
         self.author = User.current.role
       else
-        self.phash = encrypt(self.password+self.slug)
+        self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
       end    
     end
   end
@@ -117,10 +117,6 @@ class Post
     end
   end
   
-  def encrypt(string)
-    Digest::SHA2.hexdigest(string)[0, 30]
-  end
-
   def check_posts_length
      board = Board.find(self.board_abbreviation) 
      if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads

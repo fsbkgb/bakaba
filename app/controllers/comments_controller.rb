@@ -51,9 +51,4 @@ class CommentsController < ApplicationController
     expire_fragment('full-thread_'+@post.slug)
   end
 
-  def update_cache
-    expire_fragment('thread_'+@post.slug)
-    expire_fragment('full-thread_'+@post.slug)
-  end
-
 end

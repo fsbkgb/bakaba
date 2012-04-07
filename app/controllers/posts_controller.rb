@@ -67,4 +67,5 @@ class PostsController < ApplicationController
     expire_fragment('thread_'+@post.slug)
     expire_fragment('full-thread_'+@post.slug)
   end
+
 end

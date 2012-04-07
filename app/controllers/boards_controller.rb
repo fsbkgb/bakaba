@@ -88,5 +88,5 @@ class BoardsController < ApplicationController
     expire_fragment('goback_to_'+@board.abbreviation)
     expire_fragment('title_'+@board.abbreviation)
   end
-
+  
 end

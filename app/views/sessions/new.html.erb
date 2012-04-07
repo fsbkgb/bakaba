@@ -11,6 +11,6 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </p>
-<%=raw recaptcha_tags :display => {:theme => 'white'} %>
+  <%=raw recaptcha_tags :display => {:theme => 'white'} %>
   <p class="button"><%= submit_tag "Log in" %></p>
 <% end %>

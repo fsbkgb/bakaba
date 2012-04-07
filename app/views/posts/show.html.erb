@@ -1,14 +1,14 @@
 <%= render "layouts/header" %>
 <% cache 'goback_to_'+@board.abbreviation do %>
 <span class="goback">
-	[<%= link_to 'Back to Board', @board %>]
+  [<%= link_to 'Back to Board', @board %>]
 </span>
 <% end %>
 <p id="notice"><%= notice %></p>
 <div class="thread">
-	<%= render "posts/thread" %>
+  <%= render "posts/thread" %>
 </div>
 <div class="postarea">
-	<%= render "posts/commentform" %>	
+  <%= render "posts/commentform" %>	
 </div>
 <%= render "layouts/footer" %>

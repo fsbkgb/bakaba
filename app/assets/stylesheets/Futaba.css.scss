@@ -5,41 +5,41 @@ $replybackground: #F0E0D6;
 $maincolor: #800000;
 
 html, body {
-	background:#FFFFEE;
-	color:$maincolor;
+  background:#FFFFEE;
+  color:$maincolor;
   font: {
     family: $sans;
   }
 }
 
 a {
-	color:#0000EE;
+  color:#0000EE;
   &:hover { color: #DD0000; }
 }
 
 .reflink a{ 
-	color:$maincolor;
+  color:$maincolor;
 }
 
 .reply {
   @include reply;
   @include rounded-corners;
-	background:$replybackground;
-	border: solid 1px #F0D0B6;
+  background:$replybackground;
+  border: solid 1px #F0D0B6;
 }
 
 .highlight{
   @include reply;
   @include rounded-corners;
-	background:$replybackground;
-	border: dashed 2px #eeaa88;
+  background:$replybackground;
+  border: dashed 2px #eeaa88;
 }
 
 .file {
-	font:{
-	  size: .7em;
-	  style: italic;
-	}
+  font:{
+    size: .7em;
+    style: italic;
+  }
 }
 
 .posttitle {

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
@@ -16,7 +15,7 @@ class SessionsController < ApplicationController
     else
       flash.now.alert = "Invalid captcha."
       render 'new'
-   end
+    end
   end
 
   def destroy

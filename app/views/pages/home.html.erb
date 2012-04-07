@@ -7,22 +7,22 @@
     <%= link_to 'Help', help_path %>
     <%= link_to 'Contact', contact_path %>
   </div>
-<table>
-  <tbody>
-    <tr>
-      <td>
-			<% @categories.each do |category| %> 
-			<div class="boardlist"> 
-			<div class="category"><%= category.name %></div>
-				<ul>	
-					<% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>
-						<li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board_path(board) %></li>			
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
-	  </td>
-    </tr>
-  </tbody>
-</table>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <% @categories.each do |category| %> 
+            <div class="boardlist"> 
+              <div class="category"><%= category.name %></div>
+              <ul>	
+                <% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>
+                  <li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board_path(board) %></li>			
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

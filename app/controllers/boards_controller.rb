@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    @title = "| Edit Board"
+  	@title = "| Edit Board"
     @board = Board.find_by_slug(params[:id])
   end
 
@@ -88,5 +88,5 @@ class BoardsController < ApplicationController
     expire_fragment('goback_to_'+@board.abbreviation)
     expire_fragment('title_'+@board.abbreviation)
   end
-  
+
 end

@@ -75,10 +75,10 @@
                  }
     </style>
   <% else %>
-    <%= auto_discovery_link_tag(:css, "/assets/Photon.css", {:title => "Photon", :rel => "stylesheet"}) %>
-    <%= auto_discovery_link_tag(:css, "/assets/Futaba.css", {:title => "Futaba", :rel => "alternate stylesheet"}) %>
-    <%= auto_discovery_link_tag(:css, "/assets/Burichan.css", {:title => "Burichan", :rel => "alternate stylesheet"}) %>
-    <%= auto_discovery_link_tag(:css, "/assets/Gurochan.css", {:title => "Gurochan", :rel => "alternate stylesheet"}) %>
+    <%= stylesheet_link_tag "photon", :title => "Photon", :rel => "stylesheet" %>
+    <%= stylesheet_link_tag "futaba", :title => "Futaba", :rel => "alternate stylesheet" %>
+    <%= stylesheet_link_tag "burichan", :title => "Burichan", :rel => "alternate stylesheet" %>
+    <%= stylesheet_link_tag "gurochan", :title => "Gurochan", :rel => "alternate stylesheet" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
   <% end %>

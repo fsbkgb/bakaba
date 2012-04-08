@@ -56,4 +56,6 @@ Bakaba::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
   
+  config.assets.precompile += %w( burichan.css futaba.css gurochan.css photon.css )
+
 end

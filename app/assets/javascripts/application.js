@@ -10,7 +10,7 @@
 $(document).ready(function() {
 		$('.styleswitch').click(function()
 		{
-			switchStylestyle(this.getAttribute("rel"));
+			switchStylestyle(this.getAttribute("data-style"));
 			return false;
 		});
 		
@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 function switchStylestyle(styleName)
 	{
-		$('link[@rel*=style][title]').each(function(i) 
+		$('link[@data-style*=style][title]').each(function(i) 
 		{
 			this.disabled = true;
 			if (this.getAttribute('title') == styleName) this.disabled = false;

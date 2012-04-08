@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
           end
         end
         if reply_found
-          reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'"onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
+          reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'" onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
           content = content.gsub("&gt;&gt;"+reply_number, reply_link)
         end
       end

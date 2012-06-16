@@ -51,14 +51,14 @@ class PostsController < ApplicationController
     if current_user
       @post.destroy
       update_cache
-      redirect_to board_path(@board), :notice => 'Post was successfully deleted.'
+      redirect_to board_path(@board), :notice => 'Thread was successfully deleted.'
     else
       if @password == @post.password
         @post.destroy
         update_cache
-        redirect_to board_path(@board), :notice => 'Post was successfully deleted.'
+        redirect_to board_path(@board), :notice => 'Thread was successfully deleted.'
       else
-        redirect_to post_path(@post), :notice => 'You cannot delete this post.'
+        redirect_to post_path(@post), :notice => 'You cannot delete this thread.'
       end
     end
   end

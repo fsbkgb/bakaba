@@ -100,7 +100,7 @@ window.onload=function(e)
 {
 		var match;
 		if (match = /#i([0-9]+)/.exec(document.location.toString())) 
-			$("[cols]").text("to" + match[1]);
+			$("[cols]").text(">>" + match[1]);
 		if (match = /#([0-9]+)/.exec(document.location.toString())) 
 			highlight("_" + match[1]);
 }

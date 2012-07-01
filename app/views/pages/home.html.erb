@@ -16,7 +16,7 @@
               <div class="category"><%= category.name %></div>
               <ul>	
                 <% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>
-                  <li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board_path(board) %></li>			
+                  <li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board.abbreviation %></li>			
                 <% end %>
               </ul>
             </div>

@@ -1,4 +1,8 @@
-<%= link_to image_tag('del.png'), target, :confirm => 'Are you sure?', :method => :delete %>
+<% if oppost == true %>
+  <%= link_to image_tag('del.png'), '/del/'+target.slug, :confirm => 'Are you sure?', :method => :delete %>
+<% else %>
+  <%= link_to image_tag('del.png'), '/del/'+post_slug+'/post/'+target.number.to_s, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
 <% if target.phash?  %>
   <span class="id">
     <span style="background: #<%= target.phash[0, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[6, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[12, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[18, 6] %>;">&nbsp;&nbsp;</span><span style="background: #<%= target.phash[24, 6] %>;">&nbsp;&nbsp;</span>
@@ -17,15 +21,15 @@
 <% end %>
 <%= target.created_at %>
 <span class="reflink" id="<%= target.number %>">		
-  <a href="<%= path_pfx %>#<%= target.number %>">№</a>
-  <% if path_pfx == "" %>
+  <a href="<%= reflink_pfx %>#<%= target.number %>">№</a>
+  <% if params[:controller] == 'posts' %>
     <a href="javascript:insert('&gt;&gt;<%= target.number %>')"><%= target.number %></a>
   <% else %>
-    <a href="<%= path_pfx %>#i<%= target.number %>"><%= target.number %></a>
+    <a href="<%= reflink_pfx %>#i<%= target.number %>"><%= target.number %></a>
   <% end %> 
 </span>
 <% if params[:controller] == 'boards' and oppost == true  %>
-  [<%= link_to "Show" , target %>]
+  [<%= link_to "Show" , target.slug %>]
 <% end %>
 <% if target.pic.file?  %>
   <div class="file">

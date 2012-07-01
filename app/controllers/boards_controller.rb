@@ -17,8 +17,8 @@ class BoardsController < ApplicationController
 
   def show
     @categories = Category.all
-    @board = Board.find_by_slug(params[:id])
-    @posts = @board.posts.where(:board_id => @board.id).order_by([:bump, :DESCENDING]).page(params[:page]).per($threads_on_page)
+    @board = Board.find_by_slug(params[:board_id])
+    @posts = @board.posts.order_by([:bump, :DESCENDING]).page(params[:page]).per($threads_on_page)
     @title = "| "+@board.title
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +57,7 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board = Board.find_by_slug(params[:id])
+    @board = Board.find_by_slug(params[:board_id])
 
     respond_to do |format|
       if @board.update_attributes(params[:board])
@@ -72,7 +72,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board = Board.find_by_slug(params[:id])
+    @board = Board.find_by_slug(params[:board_id])
     @board.destroy
 
     respond_to do |format|

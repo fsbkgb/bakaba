@@ -1,7 +1,7 @@
 <%= render "layouts/header" %>
 <% cache 'goback_to_'+@board.abbreviation do %>
 <span class="goback">
-  [<%= link_to 'Back to Board', @board %>]
+  [<%= link_to 'Back to Board', @board.abbreviation %>]
 </span>
 <% end %>
 <p id="notice"><%= notice %></p>

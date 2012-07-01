@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem "rails"
+gem "rails", "~> 3.2.6"
 gem 'json'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'execjs'
 gem 'therubyracer'
-gem "mongoid"
+gem "mongoid", "~> 2.4.11"
 gem "bson_ext"
 gem 'mongoid_slug'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
@@ -15,3 +15,4 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'sanitize'
 gem "cancan"
+gem "recaptcha", :require => "recaptcha/rails"

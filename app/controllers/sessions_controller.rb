@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
         render "new"
       end
     else
-      flash.now.alert = "Invalid captcha."
-      render 'new'
+       flash.now.alert = "Invalid captcha."
+       render 'new'
     end
   end
 

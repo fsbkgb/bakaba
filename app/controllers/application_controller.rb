@@ -14,18 +14,19 @@ class ApplicationController < ActionController::Base
     
       content.scan(/&gt;&gt;\d+/).first(8).each do |x|
         reply_number = x.to_s.match(/\d+/)[0]
-        if Post.where(:board_abbreviation => board, :number => reply_number).length > 0
-          post = Post.where(:board_abbreviation => board, :number => reply_number).first
+        if board.posts.where(:number => reply_number).length > 0
+          post = board.posts.where(:number => reply_number).first
           reply_found = true
         else
-          if Comment.where(:board_abbreviation =>board, :number => reply_number).length > 0
-            comment = Comment.where(:board_abbreviation => board, :number => reply_number).first
-            post = Post.where(:slug => comment.post_slug).first
-            reply_found = true
+          board.posts.each do |p|
+            if p.comments.where(:number => reply_number).length > 0
+              post = p
+              reply_found = true
+            end
           end
         end
         if reply_found
-          reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'" onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
+          reply_link = '<a href="'+post.slug+'#'+reply_number+'" onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
           content = content.gsub("&gt;&gt;"+reply_number, reply_link)
         end
       end
@@ -37,19 +38,19 @@ class ApplicationController < ActionController::Base
           post = Post.where(:board_abbreviation => board_abbr, :number => reply_number).first
           reply_found = true
         else
-          if Comment.where(:board_abbreviation => board_abbr, :number => reply_number).length > 0
-            comment = Comment.where(:board_abbreviation => board_abbr, :number => reply_number).first
-            post = Post.where(:slug => comment.post_slug).first
-            reply_found = true
+          Board.where(:abbreviation => board_abbr).first.posts.each do |p|
+            if p.comments.where(:number => reply_number).length > 0
+              post = p
+              reply_found = true
+            end
           end
         end
         if reply_found
-          reply_link = '<a href="/posts/'+post.slug+'#'+reply_number+'">&gt;&gt;'+"/"+board_abbr+"/"+reply_number+'</a>'
+          reply_link = '<a href="'+post.slug+'#'+reply_number+'">&gt;&gt;'+"/"+board_abbr+"/"+reply_number+'</a>'
           content = content.gsub("&gt;&gt;/"+board_abbr+"/"+reply_number, reply_link)
         end
       end
 
-#     content.gsub!(/\n?\[c\]\n*(.+?)\n*\[\/c\]/im, "<pre>\\1</pre>")
       content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
       content.scan(/https?:\/\/[\S]+/i).each do |x|
         link='<a href="'+x.to_s+'" rel="nofollow">'+x.to_s+'</a>'

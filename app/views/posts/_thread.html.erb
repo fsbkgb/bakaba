@@ -1,12 +1,14 @@
 <% cache 'full-thread_'+@post.slug do %>
-<%= render "layouts/post", :target => @post, :path_pfx => "", :oppost => true %>
-<% Comment.where(:post_id => @post.id).asc(:number).each do |comment| %>
-  <table class="reply" id="reply_<%= comment.number %>">
-    <tr>
-      <td>
-        <%= render "layouts/post", :target => comment, :path_pfx => "", :oppost => false %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+  <%= render "layouts/post", :target => @post, :reflink_pfx => "", :oppost => true %>
+  <% if @post.comments.size > 0  %>
+    <% @post.comments.asc(:number).each do |comment| %>
+      <table class="reply" id="reply_<%= comment.number %>">
+        <tr>
+          <td>
+            <%= render "layouts/post", :target => comment, :reflink_pfx => "", :post_slug => @post.slug, :oppost => false %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
 <% end %>

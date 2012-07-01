@@ -3,43 +3,34 @@ class CommentsController < ApplicationController
   before_filter :set_current_user
   
   def create
-    @comment = Comment.new(params[:comment])
-    @post = Post.find_by_slug(@comment.post_slug)
+    @post = Post.find_by_slug(params[:post_id])
     @comment = @post.comments.new(params[:comment])
     @board = Board.find_by_slug(@post.board_abbreviation)
-    @comment.content = parse(@comment.content, @board.abbreviation)
+    @comment.content = parse(@comment.content, @board)
     if @board.ccaptcha? && verify_recaptcha(:model => @comment) && @comment.save
-      cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
-      update_cache
-      redirect_to @post
+      comment_save
     else
       if @board.ccaptcha?
-        render "err"
+        error
       else
         if @comment.save
-          cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
-          update_cache
-          redirect_to @post
+          comment_save
         else
-          render "err"
+          error
         end
       end
     end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @post = Post.find_by_slug(@comment.post_slug)
+    @post = Post.find_by_slug(params[:post_id])
+    @comment = @post.comments.find_by_slug(params[:comment_id])
     @password = cookies[:password]
     if current_user
-      @comment.destroy
-      update_cache
-      redirect_to @post, :notice => 'Post was successfully deleted.'
+      comment_destroy
     else
       if @password == @comment.password
-        @comment.destroy
-        update_cache
-        redirect_to @post, :notice => 'Post was successfully deleted.'
+        comment_destroy
       else
         redirect_to @post, :notice => 'You cannot delete this post.'
       end
@@ -49,6 +40,22 @@ class CommentsController < ApplicationController
   def update_cache
     expire_fragment('thread_'+@post.slug)
     expire_fragment('full-thread_'+@post.slug)
+  end
+
+  def comment_save
+    cookies[:password] = { :value => @comment.password, :expires => Time.now + 2600000}
+    update_cache
+    redirect_to @post
+  end
+
+  def comment_destroy
+    @comment.destroy
+    update_cache
+    redirect_to @post, :notice => 'Post was successfully deleted.'
+  end
+
+  def error
+    render "err"
   end
 
 end

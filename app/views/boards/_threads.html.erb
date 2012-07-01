@@ -2,20 +2,20 @@
 <% cache 'thread_'+post.slug do %>
   <div class="thread" id="thread_<%= post.number %>">
     <div class="oppost">
-      <%= render "layouts/post", :target => post, :path_pfx => post_path(post), :oppost => true %>
+      <%= render "layouts/post", :target => post, :reflink_pfx => post.slug, :oppost => true %>
     </div>
-    <% if Comment.where(:post_id => post.id).length > $visible_comments+1 %>
-      <% @omcomm = (Comment.where(:post_id => post.id).length)-$visible_comments %>	
+    <% if post.comments.length > $visible_comments+1 %>
+      <% @omcomm = (post.comments.length)-$visible_comments %>	
       <span class="omittedposts"><%= @omcomm %> comments omitted. Click Show to view.</span>			
-      <% @comments = Comment.where(:post_id => post.id).asc(:number).skip(@omcomm) %>
+      <% @comments = post.comments.asc(:number).skip(@omcomm) %>
     <% else %>
-      <% @comments = Comment.where(:post_id => post.id).asc(:number) %>
+      <% @comments = post.comments.asc(:number) %>
     <% end %>	
     <% @comments.each do |comment| %>
       <table class="reply" id="reply_<%= comment.number %>">
         <tr>
           <td>
-            <%= render "layouts/post", :target => comment, :path_pfx => post_path(post), :oppost => false %>
+            <%= render "layouts/post", :target => comment, :reflink_pfx => post.slug, :post_slug => post.slug, :oppost => false %>
           </td>
         </tr>
       </table>	

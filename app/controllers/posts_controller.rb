@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def show
     @boards = Board.all
     @categories = Category.all
-    @post = Post.find_by_slug(params[:id])
+    @post = Post.find_by_slug(params[:post_id])
     @board = Board.find_by_slug(@post.board_abbreviation)
     if @post.title?
       @title = "| "+@board.title+" | "+@post.title
@@ -28,35 +28,29 @@ class PostsController < ApplicationController
     @post = @board.posts.new(params[:post])
     @post.content = parse(@post.content, @board.abbreviation)
     if @board.pcaptcha? && verify_recaptcha(:model => @post) && @post.save
-      cookies[:password] = { :value => @post.password, :expires => Time.now + 2600000}
-      redirect_to @post
+      post_save
     else
       if @board.pcaptcha?
-        render "err"
+        error
       else
         if @post.save
-          cookies[:password] = { :value => @post.password, :expires => Time.now + 2600000}
-          redirect_to @post
+          post_save
         else
-          render "err"
+          error
         end
       end
     end
   end
 
   def destroy
-    @post = Post.find_by_slug(params[:id])
+    @post = Post.find_by_slug(params[:post_id])
     @board = Board.find_by_slug(@post.board_abbreviation)
     @password = cookies[:password]
     if current_user
-      @post.destroy
-      update_cache
-      redirect_to board_path(@board), :notice => 'Thread was successfully deleted.'
+      post_destroy
     else
       if @password == @post.password
-        @post.destroy
-        update_cache
-        redirect_to board_path(@board), :notice => 'Thread was successfully deleted.'
+        post_destroy
       else
         redirect_to post_path(@post), :notice => 'You cannot delete this thread.'
       end
@@ -66,6 +60,21 @@ class PostsController < ApplicationController
   def update_cache
     expire_fragment('thread_'+@post.slug)
     expire_fragment('full-thread_'+@post.slug)
+  end
+
+  def post_save
+    cookies[:password] = { :value => @post.password, :expires => Time.now + 2600000}
+    redirect_to @post
+  end
+
+  def post_destroy
+    @post.destroy
+    update_cache
+    redirect_to '/'+@board.abbreviation, :notice => 'Thread was successfully deleted.'
+  end
+
+  def error
+    render "err"
   end
 
 end

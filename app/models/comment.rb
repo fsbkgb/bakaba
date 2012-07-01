@@ -2,6 +2,8 @@ class Comment
 
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Slug
+
   field :content
   field :number, :type => Integer
   field :created_at
@@ -15,8 +17,9 @@ class Comment
   attr_accessible :content, :post_slug, :password, :show_id, :pic
 
   index :number
+  slug :slug
 
-  referenced_in :post, :inverse_of => :comments
+  embedded_in :post, :inverse_of => :comments
 
   has_mongoid_attached_file :pic, :styles => { :small => "180x180>" },
                                   :url  => "/pic/:board/:style/:filename"
@@ -53,6 +56,7 @@ class Comment
     post = Post.find_by_slug(self.post_slug)
     board = Board.find_by_slug(post.board_abbreviation)
     self.number = board.comments + 1
+    self.slug = self.number.to_s
     board.update_attributes(:comments => board.comments + 1)
     self.board_abbreviation = board.abbreviation
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")

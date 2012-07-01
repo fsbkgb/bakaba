@@ -21,7 +21,7 @@ class Post
   index :bump
 
   referenced_in :board, :inverse_of => :posts
-  references_many :comments, :dependent => :destroy
+  embeds_many :comments
 
   slug :slug
 

@@ -13,17 +13,26 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      redirect_to users_path
+    @users = User.all
+    if @user.role == 'adm' && @users.where(:role => 'adm').size > 0
+      redirect_to users_path, :notice => 'Admin already exist'
     else
-      render "new"
+      if @user.save
+        redirect_to users_path
+      else
+        render "new"
+      end
     end
   end
 
   def destroy
     @user = User.find_by_slug(params[:id])
-    @user.destroy
-    redirect_to users_path
+    if @user.role == 'adm'
+      redirect_to users_path, :notice => 'No!'
+    else  
+      @user.destroy
+      redirect_to users_path
+    end
   end
 
 end

@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing boards</h1>
-<small>Boards: <%= @boards.size %> Threads: <%= @posts.size %> Posts: <%= @posts.size+@comments.size %></small>
 <hr />
 <% @categories.each do |category| %> 
   <strong><%= category.name %></strong>
@@ -16,11 +15,11 @@
       <tr>
         <th>Abbreviation</th>
         <th>Title</th>
-        <th>Maxthreads</th>
-        <th>Comments</th>
+        <th>Threadlimit</th>
+        <th>Postcount</th>
         <th>Hidden</th>
-        <th>Pcaptcha</th>
-        <th>Ccaptcha</th>
+        <th>Captcha for new threads</th>
+        <th>Captcha for comments</th>
         <th></th>
         <th></th>
         <th></th>
@@ -34,7 +33,7 @@
         <td><%= board.hidden %></td>
         <td><%= board.pcaptcha %></td>
         <td><%= board.ccaptcha %></td>
-        <td>[ <%= link_to 'Show', board %> /</td>
+        <td>[ <%= link_to 'Show', board.abbreviation %> /</td>
         <td><%= link_to 'Edit', edit_board_path(board) %> /</td>
         <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %> ]</td>
       </tr>

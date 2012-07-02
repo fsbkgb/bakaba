@@ -52,7 +52,7 @@ class PostsController < ApplicationController
       if @password == @post.password
         post_destroy
       else
-        redirect_to post_path(@post), :notice => 'You cannot delete this thread.'
+        redirect_to '/'+@post.slug, :notice => 'You cannot delete this thread.'
       end
     end
   end

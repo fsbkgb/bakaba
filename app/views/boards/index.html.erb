@@ -35,7 +35,7 @@
         <td><%= board.ccaptcha %></td>
         <td>[ <%= link_to 'Show', board.abbreviation %> /</td>
         <td><%= link_to 'Edit', edit_board_path(board) %> /</td>
-        <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %> ]</td>
+        <td><%= link_to 'Destroy', '/del/'+board.abbreviation, :confirm => 'Are you sure?', :method => :delete %> ]</td>
       </tr>
     <% end %>
     </table>

@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
       if @password == @comment.password
         comment_destroy
       else
-        redirect_to @post, :notice => 'You cannot delete this post.'
+        redirect_to '/'+@post.slug, :notice => 'You cannot delete this post.'
       end
     end
   end
@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
   def comment_destroy
     @comment.destroy
     update_cache
-    redirect_to @post, :notice => 'Post was successfully deleted.'
+    redirect_to '/'+@post.slug, :notice => 'Post was successfully deleted.'
   end
 
   def error

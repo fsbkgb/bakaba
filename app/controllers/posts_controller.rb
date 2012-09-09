@@ -63,6 +63,7 @@ class PostsController < ApplicationController
   end
 
   def post_save
+    @post.update_attribute(:updated_at, Time.now)
     cookies[:password] = { :value => @post.password, :expires => Time.now + 2600000}
     redirect_to @post
   end

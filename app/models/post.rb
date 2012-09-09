@@ -57,7 +57,6 @@ class Post
   end
 
   def set_params
-    self.bump = Time.now
     board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
     self.slug = board.abbreviation+'-'+(self.number).to_s

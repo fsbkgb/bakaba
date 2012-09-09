@@ -16,3 +16,6 @@ gem 'kaminari'
 gem 'sanitize'
 gem "cancan"
 gem "recaptcha", :require => "recaptcha/rails"
+group :development, :test do
+  gem "thin"
+end

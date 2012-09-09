@@ -18,7 +18,7 @@ class BoardsController < ApplicationController
   def show
     @categories = Category.all
     @board = Board.find_by_slug(params[:board_id])
-    @posts = @board.posts.order_by([:bump, :DESCENDING]).page(params[:page]).per($threads_on_page)
+    @posts = @board.posts.order_by([:updated_at, :DESCENDING]).page(params[:page]).per($threads_on_page)
     @title = "| "+@board.title
     respond_to do |format|
       format.html # show.html.erb

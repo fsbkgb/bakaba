@@ -8,7 +8,6 @@ class Post
   field :content
   field :number, :type => Integer
   field :created_at
-  field :bump, :type => DateTime
   field :slug
   field :password
   field :phash
@@ -16,7 +15,7 @@ class Post
   field :author
   field :board_abbreviation
 
-  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :bump, :pic
+  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :bump, :pic, :updated_at
 
   index :bump
 
@@ -62,7 +61,7 @@ class Post
     board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
     self.slug = board.abbreviation+'-'+(self.number).to_s
-    board.update_attributes(:comments => board.comments + 1)
+    board.update_attribute(:comments, board.comments + 1)
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
     if self.show_id == true
       if User.current

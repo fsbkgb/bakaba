@@ -6,6 +6,7 @@ class Post
 
   field :title
   field :content
+  field :media
   field :number, :type => Integer
   field :created_at
   field :slug
@@ -15,13 +16,12 @@ class Post
   field :author
   field :board_abbreviation
 
-  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :bump, :pic, :updated_at
-
-  index :bump
+  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :pic, :updated_at, :media
 
   referenced_in :board, :inverse_of => :posts
   embeds_many :comments
 
+  index :updated_at
   slug :slug
 
   has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
@@ -74,7 +74,7 @@ class Post
   def check_posts_length
     board = Board.find_by_slug(self.board_abbreviation)
     if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
-      post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:bump).last
+      post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:updated_at).last
     post.destroy
     end
   end

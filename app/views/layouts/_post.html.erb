@@ -41,4 +41,8 @@
     <% end %>
   </div>
 <% end %>
+<% if target.media?  %>
+  <br />
+  <%=raw target.media %>
+<% end %>
 <div class="content"><%=raw target.content %></div>

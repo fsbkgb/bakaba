@@ -1,10 +1,10 @@
 $serif: droid serif, liberation serif, "Georgia", "Times New Roman", "Times", serif;
 $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
 
-@mixin rounded-corners($radius) {
-  border-radius: $radius;
-  -moz-border-radius: $radius;
-  -webkit-border-radius: $radius;
+@mixin rounded-corners {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 @mixin reply{
@@ -71,8 +71,14 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   clear:left;
 }
 
-.pic {
+.pic, .vocaroo {
   float: left;
+  padding: 7px;
+}
+
+iframe {
+  float: left;
+  border: none;
   padding: 7px;
 }
 

@@ -6,6 +6,10 @@
       <td class="postblock">Comment:</td>
       <td><%= f.text_area :content, :rows => 10, :cols => 70 %></td>
     </tr>
+    <tr>   
+      <td class="postblock">Media:</td>
+      <td><%= f.text_field :media, :size => 40 %> (YouTube, Vimeo, Vocaroo)</td>
+    </tr>
   <% if @board.ccaptcha? %>
     <tr>
       <td class="postblock">Verification: </td>

@@ -5,6 +5,7 @@ class Comment
   include Mongoid::Slug
 
   field :content
+  field :media
   field :number, :type => Integer
   field :created_at
   field :password
@@ -14,7 +15,7 @@ class Comment
   field :post_slug
   field :board_abbreviation
 
-  attr_accessible :content, :post_slug, :password, :show_id, :pic
+  attr_accessible :content, :post_slug, :password, :show_id, :pic, :media
 
   index :number
   slug :slug

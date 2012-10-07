@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   def parse(content, board)
     content.strip!
-    if content!=""
+    unless content.nil?
       content.gsub!('&', '&amp;')
       content.gsub!('<', '&lt;')
       content.gsub!('>', '&gt;')
@@ -59,6 +59,26 @@ class ApplicationController < ActionController::Base
       content.gsub! /\r\n/, '<br />'
       content.gsub! /(<br \/>){2,}/, '<br /><br />'
       content="<p>"+content+"</p>"
+    end
+  end
+
+  def parse_media(media)
+    youtube_regex = /https?:\/\/(www.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/watch\?feature=player_embedded&v=)([A-Za-z0-9_-]{11})(\&\S+)?(\S)*/
+    vimeo_regex = /https?:\/\/(www.)?vimeo\.com\/([0-9]*)/
+    vocaroo_regex = /http:\/\/vocaroo\.com\/i\/([A-Za-z0-9]{12})/
+
+    if media.match(youtube_regex) or media.match(vimeo_regex) or media.match(vocaroo_regex)
+      media.gsub(youtube_regex) do
+        media = '<iframe width="410" height="270" src="//www.youtube.com/embed/'+$3+'"></iframe>' unless $3.nil?
+      end
+      media.gsub(vimeo_regex) do
+        media = '<iframe src="//player.vimeo.com/video/'+$2+'" width="410" height="270"></iframe>' unless $2.nil?
+      end
+      media.gsub(vocaroo_regex) do
+        media = '<div class="vocaroo"><embed src="http://vocaroo.com/player.swf?playMediaID='+$1+'&amp;autoplay=0" width="148" height="44" wmode="transparent" type="application/x-shockwave-flash"/><br /><small><a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_mp3">MP3</a>, <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_ogg">Ogg</a>, <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_flac">FLAC</a>, or <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_wav">WAV</a>.</small></div>' unless $1.nil?
+      end
+    else
+      media = ''
     end
   end
       

@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(params[:comment])
     @board = Board.find_by_slug(@post.board_abbreviation)
     @comment.content = parse(@comment.content, @board)
+    if @comment.media?
+      @comment.pic.destroy if @comment.pic?
+      @comment.media = parse_media(@comment.media)
+    end
     if @board.ccaptcha? && verify_recaptcha(:model => @comment) && @comment.save
       comment_save
     else

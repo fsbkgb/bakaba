@@ -31,7 +31,7 @@ class Post
   validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   validate :validates_pic_or_post
-  validates :content,  :length => { :maximum => 2500 }
+  validates :content, :length => { :maximum => 2500 }
   validates :title, :length => { :maximum => 30 }
 
   pass_regex = /^\w+$/
@@ -45,8 +45,8 @@ class Post
   after_create :check_posts_length
   
   def validates_pic_or_post
-    errors.add(:post, "Post must have text post or picture!") if
-    content.blank? && pic_file_name.blank?
+    errors.add(:post, " must have text post or attachment.") if
+    content == "<p></p>" and pic_file_name.blank? and media.blank?
   end
 
   def rename_file

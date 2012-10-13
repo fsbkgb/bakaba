@@ -43,6 +43,8 @@
 <% end %>
 <% if target.media?  %>
   <br />
-  <%=raw target.media %>
+  <div class="attachment" id="att_<%= target.number %>">
+    <%=raw target.media %>
+  </div>
 <% end %>
 <div class="content"><%=raw target.content %></div>

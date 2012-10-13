@@ -71,19 +71,13 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   clear:left;
 }
 
-.pic, .vocaroo {
+.pic, .attachment {
   float: left;
   padding: 7px;
 }
 
-iframe {
-  float: left;
+iframe, img {
   border: none;
-  padding: 7px;
-}
-
-img {
-    border: none;
 }
 
 p {

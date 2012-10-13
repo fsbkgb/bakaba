@@ -42,8 +42,8 @@ class Comment
   after_create :bump
   
   def validates_pic_or_post
-    errors.add(:comment, " must have text post or picture!") if
-    content.blank? && pic_file_name.blank?
+    errors.add(:comment, " must have text post or attachment.") if
+    content == "<p></p>" and pic_file_name.blank? and media.blank?
   end
 
   def rename_file

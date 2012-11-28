@@ -31,20 +31,30 @@
 <% if params[:controller] == 'boards' and oppost == true  %>
   [<%= link_to "Show" , target.slug %>]
 <% end %>
-<% if target.pic.file?  %>
-  <div class="file">
-    Click on image for full size view (<%= target.pic_file_size/1024 %> kB)
-  </div>
-  <div class="pic">
-    <%= link_to(target.pic.url, :target => "_blank") do %>
-      <%= image_tag target.pic.url(:small) %>
+<% if target.pic.file? or target.media? %>
+  <% if target.pic.file? %>
+    <div class="file">
+      Click on image for full size view (<%= target.pic_file_size/1024 %> kB)
+    </div>
+    <div class="content">
+      <div class="pic">
+        <%= link_to(target.pic.url, :target => "_blank") do %>
+          <%= image_tag target.pic.url(:small) %>
+        <% end %>
+      </div>
+      <%=raw target.content %>
+    </div>
+  <% else %>
+    <% if target.media? %>
+      <br />
+      <div class="content">
+        <div class="attachment" id="att_<%= target.number %>">
+          <%=raw target.media %>
+        </div>
+        <%=raw target.content %>
+      </div>
     <% end %>
-  </div>
+  <% end %>
+<% else %>
+  <div class="content"><%=raw target.content %></div>
 <% end %>
-<% if target.media?  %>
-  <br />
-  <div class="attachment" id="att_<%= target.number %>">
-    <%=raw target.media %>
-  </div>
-<% end %>
-<div class="content"><%=raw target.content %></div>

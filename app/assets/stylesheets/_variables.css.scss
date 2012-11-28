@@ -76,6 +76,10 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   padding: 7px;
 }
 
+.embedPastebin {
+  max-height: 400px;
+}
+
 iframe, img {
   border: none;
 }
@@ -97,11 +101,6 @@ hr {
 .quote { 
   color: #789922;
   margin: 0 0.5em;
-}
-
-.content {
-  max-height: 400px;
-  overflow: auto;
 }
 
 .posttitle {

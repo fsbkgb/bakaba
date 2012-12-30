@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if verify_recaptcha
+#    if verify_recaptcha
       user = User.authenticate(params[:name], params[:password])
       if user
         session[:user_id] = user.id
@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
         flash.now.alert = "Invalid name or password"
         render "new"
       end
-    else
-       flash.now.alert = "Invalid captcha."
-       render 'new'
-    end
+#    else
+#       flash.now.alert = "Invalid captcha."
+#       render 'new'
+#    end
   end
 
   def destroy

@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   end
 
   def edit
-  	@title = "| Edit Board"
+    @title = "| Edit Board"
     @board = Board.find_by_slug(params[:id])
   end
 

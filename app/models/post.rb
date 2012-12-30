@@ -27,27 +27,12 @@ class Post
   has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
                                   :url  => "/pic/:board/:style/:filename"
 
-  validates_attachment_size :pic, :less_than => 5.megabytes
-  validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-
-  validate :validates_pic_or_post
-  validates :content, :length => { :maximum => 2500 }
   validates :title, :length => { :maximum => 30 }
-
-  pass_regex = /^\w+$/
-
-  validates :password, :presence => true,
-                       :length => { :maximum => 15 },
-                       :format => { :with => pass_regex }
+  validates_with PostValidator
 
   before_post_process :rename_file
   before_create :set_params
   after_create :check_posts_length
-  
-  def validates_pic_or_post
-    errors.add(:post, " must have text post or attachment.") if
-    content == "<p></p>" and pic_file_name.blank? and media.blank?
-  end
 
   def rename_file
     extension = File.extname(pic_file_name).gsub(/^\.+/, '')
@@ -59,7 +44,6 @@ class Post
   def set_params
     board = Board.find_by_slug(self.board_abbreviation)
     self.number = board.comments + 1
-    self.slug = board.abbreviation+'-'+(self.number).to_s
     board.update_attribute(:comments, board.comments + 1)
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
     if self.show_id == true
@@ -69,6 +53,7 @@ class Post
         self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
       end
     end
+    self.slug = board.abbreviation+'-'+(self.number).to_s
   end
 
   def check_posts_length

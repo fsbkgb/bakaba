@@ -25,26 +25,11 @@ class Comment
   has_mongoid_attached_file :pic, :styles => { :small => "180x180>" },
                                   :url  => "/pic/:board/:style/:filename"
 
-  validates_attachment_size :pic, :less_than => 5.megabytes
-  validates_attachment_content_type :pic, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-
-  validate :validates_pic_or_post
-  validates :content, :length => { :maximum => 2500 }
-
-  pass_regex = /^\w+$/
-
-  validates :password, :presence => true,
-                       :length => { :maximum => 15 },
-                       :format => { :with => pass_regex }
-
   before_post_process :rename_file
   before_create :set_params
   after_create :bump
   
-  def validates_pic_or_post
-    errors.add(:comment, " must have text post or attachment.") if
-    content == "<p></p>" and pic_file_name.blank? and media.blank?
-  end
+  validates_with PostValidator
 
   def rename_file
     extension = File.extname(pic_file_name).gsub(/^\.+/, '')
@@ -57,9 +42,7 @@ class Comment
     post = Post.find_by_slug(self.post_slug)
     board = Board.find_by_slug(post.board_abbreviation)
     self.number = board.comments + 1
-    self.slug = self.number.to_s
     board.update_attribute(:comments, board.comments + 1)
-    self.board_abbreviation = board.abbreviation
     self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
     if self.show_id == true
       if User.current
@@ -68,6 +51,8 @@ class Comment
         self.phash = Digest::SHA2.hexdigest(self.password+post.slug)[0, 30]
       end
     end
+    self.slug = self.number.to_s
+    self.board_abbreviation = board.abbreviation
   end
 
   def bump

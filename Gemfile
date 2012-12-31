@@ -1,13 +1,14 @@
 source 'http://rubygems.org'
 
-gem "rails", "~> 3.2.8"
+gem "rails", "~> 3.2"
 gem 'json'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'execjs'
+gem 'libv8'
 gem 'therubyracer'
-gem "mongoid", "~> 2.4.11"
+gem "mongoid", "~> 2.5"
 gem "bson_ext"
 gem 'mongoid_slug'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"

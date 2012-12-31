@@ -3,6 +3,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
+  include PostStuff
 
   field :title
   field :content
@@ -28,31 +29,15 @@ class Post
                                   :url  => "/pic/:board/:style/:filename"
 
   validates :title, :length => { :maximum => 30 }
-  validates_with PostValidator
+  validates_with AttachmentValidator
 
   before_post_process :rename_file
   before_create :set_params
   after_create :check_posts_length
 
-  def rename_file
-    extension = File.extname(pic_file_name).gsub(/^\.+/, '')
-    rnd = rand(1000).to_s
-    time = Time.now.to_i
-    self.pic.instance_write(:file_name, "#{time}#{rnd}.#{extension}")
-  end
-
   def set_params
     board = Board.find_by_slug(self.board_abbreviation)
-    self.number = board.comments + 1
-    board.update_attribute(:comments, board.comments + 1)
-    self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
-    if self.show_id == true
-      if User.current
-        self.author = User.current.role
-      else
-        self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
-      end
-    end
+    set_attr(board)
     self.slug = board.abbreviation+'-'+(self.number).to_s
   end
 

@@ -25,7 +25,7 @@ class Post
   index :updated_at
   slug :slug
 
-  has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
+  has_mongoid_attached_file :pic, :styles => { :small => $OP_thumb },
                                   :url  => "/pic/:board/:style/:filename"
 
   validates :title, :length => { :maximum => 30 }
@@ -44,7 +44,7 @@ class Post
   def check_posts_length
     board = Board.find_by_slug(self.board_abbreviation)
     if Post.all(:conditions => {:board_abbreviation => board.abbreviation}).length > board.maxthreads
-      post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:updated_at).last
+      post = Post.all(:conditions => {:board_abbreviation => board.abbreviation}).descending(:updated_at).first
     post.destroy
     end
   end

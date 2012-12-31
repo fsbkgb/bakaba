@@ -26,10 +26,8 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @board = Board.find_by_slug(@post.board_abbreviation)
     @post = @board.posts.new(params[:post])
-    @post.content = parse(@post.content, @board.abbreviation)
     if @post.media?
       @post.pic.destroy if @post.pic?
-      @post.media = parse_media(@post.media)
     end
     if @board.pcaptcha? && verify_recaptcha(:model => @post) && @post.save
       post_save

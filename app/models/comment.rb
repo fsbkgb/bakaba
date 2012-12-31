@@ -23,7 +23,7 @@ class Comment
 
   embedded_in :post, :inverse_of => :comments
 
-  has_mongoid_attached_file :pic, :styles => { :small => "180x180>" },
+  has_mongoid_attached_file :pic, :styles => { :small => $post_thumb },
                                   :url  => "/pic/:board/:style/:filename"
   validates_with AttachmentValidator
 

@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
+  include Mongoid::Timestamps
   include PostStuff
 
   field :content
@@ -18,8 +19,7 @@ class Comment
 
   attr_accessible :content, :post_slug, :password, :show_id, :pic, :media
 
-  index :number
-  slug :slug
+  index ({ number: 1 })
 
   embedded_in :post, :inverse_of => :comments
 
@@ -32,17 +32,17 @@ class Comment
   after_create :bump
 
   def set_params
-    post = Post.find_by_slug(self.post_slug)
-    board = Board.find_by_slug(post.board_abbreviation)
+    post = Post.find(self.post_slug)
+    board = Board.find(post.board_abbreviation)
     set_attr(board)
-    self.slug = self.number.to_s
+    self._slugs = [self.number.to_s]
     self.board_abbreviation = board.abbreviation
   end
 
   def bump
-    post = Post.find_by_slug(self.post_slug)
+    post = Post.find(self.post_slug)
     if post.comments.size < $bumplimit
-      post.update_attribute(:updated_at, Time.now)
+      post.touch
     end
   end
 

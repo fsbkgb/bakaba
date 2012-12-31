@@ -16,7 +16,7 @@ class User
   validates :password,  :presence => true,
                         :length => { :within => 6..40 }
   def self.authenticate(name, password)
-    user = User.find_by_slug(name)
+    user = User.find(name)
     if user && user.password == password
     user
     else

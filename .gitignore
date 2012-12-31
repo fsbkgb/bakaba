@@ -2,7 +2,6 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
-public/mongo/*
 public/pic/**/*
 public/index.html
 public/contact.html
@@ -14,3 +13,6 @@ public/help.html
 .tmp__*
 .sass-cache/
 .idea/
+.dotcloud/
+.dotcloudignore
+dotcloud.yml

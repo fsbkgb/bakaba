@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by_slug(params[:id])
+    @user = User.find params[:id]
     if @user.role == 'adm'
       redirect_to users_path, :notice => 'No!'
     else  

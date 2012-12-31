@@ -18,7 +18,6 @@ module PostStuff
       self.media = parse_media(self.media) if self.media?
       self.number = board.comments + 1
       board.update_attribute(:comments, board.comments + 1)
-      self.created_at = Time.now.strftime("%A %e %B %Y %H:%M:%S")
       if self.show_id == true
         if User.current
           self.author = User.current.role

@@ -1,5 +1,5 @@
 class Category
   include Mongoid::Document
   field :name
-  references_many :boards
+  has_many :boards
 end

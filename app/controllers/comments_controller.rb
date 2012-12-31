@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   before_filter :set_current_user
   
   def create
-    @post = Post.find_by_slug(params[:post_id])
+    @post = Post.find params[:post_id]
     @comment = @post.comments.new(params[:comment])
-    @board = Board.find_by_slug(@post.board_abbreviation)
+    @board = Board.find(@post.board_abbreviation)
     if @comment.media?
       @comment.pic.destroy if @comment.pic?
     end
@@ -25,8 +25,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by_slug(params[:post_id])
-    @comment = @post.comments.find_by_slug(params[:comment_id])
+    @post = Post.find params[:post_id]
+    @comment = @post.comments.find params[:comment_id]
     @password = cookies[:password]
     if current_user
       comment_destroy

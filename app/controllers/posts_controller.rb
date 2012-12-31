@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   def show
     @boards = Board.all
     @categories = Category.all
-    @post = Post.find_by_slug(params[:post_id])
-    @board = Board.find_by_slug(@post.board_abbreviation)
+    @post = Post.find params[:post_id]
+    @board = Board.find(@post.board_abbreviation)
     if @post.title?
       @title = "| "+@board.title+" | "+@post.title
     else
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @board = Board.find_by_slug(@post.board_abbreviation)
+    @board = Board.find(@post.board_abbreviation)
     @post = @board.posts.new(params[:post])
     if @post.media?
       @post.pic.destroy if @post.pic?
@@ -45,8 +45,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by_slug(params[:post_id])
-    @board = Board.find_by_slug(@post.board_abbreviation)
+    @post = Post.find params[:post_id]
+    @board = Board.find(@post.board_abbreviation)
     @password = cookies[:password]
     if current_user
       post_destroy

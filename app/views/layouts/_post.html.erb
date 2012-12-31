@@ -19,7 +19,7 @@
 <% if oppost == true %>
   <span class="posttitle"><%= target.title %></span>
 <% end %>
-<%= target.created_at %>
+<%= target.created_at.strftime("%A %e %B %Y %H:%M:%S") %>
 <span class="reflink" id="<%= target.number %>">		
   <a href="<%= reflink_pfx %>#<%= target.number %>">№</a>
   <% if params[:controller] == 'posts' %>

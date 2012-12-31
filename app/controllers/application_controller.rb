@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     $visible_comments = 5
     $OP_thumb = "220x220>"
     $post_thumb = "180x180>"
-    $version = "0.4.5"
+    $version = "0.4.6"
   end
     
   def set_current_user

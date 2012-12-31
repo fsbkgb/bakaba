@@ -12,10 +12,10 @@ class Board
   field :pcaptcha, :type => Boolean
   field :ccaptcha, :type => Boolean
 
-  index :abbreviation, :unique => true
+  index({ abbreviation: 1 }, { unique: true })
 
-  referenced_in :category, :inverse_of => :boards
-  references_many :posts, :dependent => :destroy
+  belongs_to :category, :inverse_of => :boards
+  has_many :posts, :dependent => :destroy
 
   slug :abbreviation
 

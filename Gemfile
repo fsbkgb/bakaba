@@ -8,7 +8,7 @@ gem 'uglifier'
 gem 'execjs'
 gem 'libv8'
 gem 'therubyracer'
-gem "mongoid", "~> 2.5"
+gem "mongoid"
 gem "bson_ext"
 gem 'mongoid_slug'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"

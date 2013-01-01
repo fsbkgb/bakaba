@@ -24,6 +24,7 @@ class Post
   index ({ updated_at: 1 })
 
   has_mongoid_attached_file :pic, :styles => { :small => $OP_thumb },
+                                  :path => ":rails_root/public/pic/:board/:style/:filename",
                                   :url  => "/pic/:board/:style/:filename"
 
   validates :title, :length => { :maximum => 30 }

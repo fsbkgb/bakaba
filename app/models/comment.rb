@@ -24,7 +24,9 @@ class Comment
   embedded_in :post, :inverse_of => :comments
 
   has_mongoid_attached_file :pic, :styles => { :small => $post_thumb },
+                                  :path => ":rails_root/public/pic/:board/:style/:filename",
                                   :url  => "/pic/:board/:style/:filename"
+                                  
   validates_with AttachmentValidator
 
   before_post_process :rename_file

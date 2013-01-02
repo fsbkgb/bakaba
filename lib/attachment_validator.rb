@@ -6,7 +6,7 @@ class AttachmentValidator < ActiveModel::Validator
       record.errors[:base] << "Unsupported format." if record.pic_content_type.match(pic_regex).nil?
       record.errors[:base] << "Picture too big." unless record.pic_file_size < 5.megabytes
     end
-    record.errors[:base] << "Post must have text post or attachment." if record.content == "<p></p>" and record.pic_file_name.blank? and record.media.blank?
+    record.errors[:base] << "Post must have text post or attachment." if record.content.blank? and record.pic_file_name.blank? and record.media.blank?
   end
 
 end

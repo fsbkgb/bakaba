@@ -155,7 +155,7 @@ DEPENDENCIES
   mongoid
   mongoid-paperclip
   mongoid_slug
-  paperclip (~> 2.8)
+  paperclip
   rails (~> 3.2)
   recaptcha
   sanitize

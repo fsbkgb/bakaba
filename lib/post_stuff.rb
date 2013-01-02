@@ -16,13 +16,14 @@ module PostStuff
     def set_attr (board)
       self.content = parse(self.content, board)
       self.media = parse_media(self.media) if self.media?
-      self.number = board.comments + 1
+      self.number = board.comments + 1 
+      self.post_slug = board.abbreviation+'-'+(self.number).to_s if self.class.name == "Post"
       board.update_attribute(:comments, board.comments + 1)
       if self.show_id == true
         if User.current
           self.author = User.current.role
         else
-          self.phash = Digest::SHA2.hexdigest(self.password+self.slug)[0, 30]
+          self.phash = Digest::SHA2.hexdigest(self.password+self.post_slug)[0, 30]
         end
       end
     end

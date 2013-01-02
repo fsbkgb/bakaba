@@ -11,7 +11,7 @@ gem 'therubyracer'
 gem "mongoid"
 gem "bson_ext"
 gem 'mongoid_slug'
-gem "paperclip", "~> 2.8"
+gem "paperclip"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'jquery-rails'
 gem 'kaminari'

@@ -58,4 +58,6 @@ Bakaba::Application.configure do
   
   config.assets.precompile += %w( burichan.css futaba.css gurochan.css photon.css )
 
+  Paperclip.options[:command_path] = "/usr/bin"
+
 end

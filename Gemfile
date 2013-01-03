@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem "rails", "~> 3.2"
+gem "cocaine", "~> 0.3.0"
 gem 'json'
 gem 'sass-rails'
 gem 'coffee-rails'

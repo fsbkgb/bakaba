@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   
   before_filter :set_current_user
-#  load_and_authorize_resource :find_by => :slug
+  load_and_authorize_resource :find_by => :slug
   
   def index
     @title = "| Boards"

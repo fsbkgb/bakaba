@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.title?
       @title = "| "+@board.title+" | "+@post.title
     else
-      if @post.content?
+      if @post.content != "<p></p>"
         if @post.content.length < 31
           @title = "| "+@board.title+" | "+Sanitize.clean(@post.content)
         else

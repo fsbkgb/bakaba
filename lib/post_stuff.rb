@@ -16,6 +16,7 @@ module PostStuff
     def set_attr (board)
       self.content = parse(self.content, board)
       self.media = parse_media(self.media) if self.media?
+      self.pic.destroy if self.pic? and self.media?
       self.number = board.comments + 1 
       self.post_slug = board.abbreviation+'-'+(self.number).to_s if self.class.name == "Post"
       board.update_attribute(:comments, board.comments + 1)
@@ -106,7 +107,7 @@ module PostStuff
           media = '<script src="http://pastebin.com/embed_js.php?i='+$1+'"></script>' unless $1.nil?
         end
       else
-        media = ''
+        media = nil
       end
     end
 

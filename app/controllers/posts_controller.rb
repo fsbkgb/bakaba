@@ -26,9 +26,6 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @board = Board.find(@post.board_abbreviation)
     @post = @board.posts.new(params[:post])
-    if @post.media?
-      @post.pic.destroy if @post.pic?
-    end
     if @board.pcaptcha? && verify_recaptcha(:model => @post) && @post.save
       post_save
     else

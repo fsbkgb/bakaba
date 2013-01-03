@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   
   before_filter :set_current_user
-  load_and_authorize_resource :find_by => :slug
+#  load_and_authorize_resource :find_by => :slug
   
   def index
     @title = "| Boards"
@@ -11,7 +11,6 @@ class BoardsController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @boards }
     end
   end
 
@@ -22,7 +21,6 @@ class BoardsController < ApplicationController
     @title = "| "+@board.title
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @board }
     end
   end
 
@@ -31,7 +29,6 @@ class BoardsController < ApplicationController
     @board = Board.new
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @board }
     end
   end
 
@@ -46,10 +43,8 @@ class BoardsController < ApplicationController
     respond_to do |format|
       if @board.save
         format.html { redirect_to(boards_url, :notice => 'Board was successfully created.') }
-        format.xml  { render :xml => @board, :status => :created, :location => @board }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @board.errors, :status => :unprocessable_entity }
       end
     end
     expire_page ("/index")
@@ -62,10 +57,8 @@ class BoardsController < ApplicationController
     respond_to do |format|
       if @board.update_attributes(params[:board])
         format.html { redirect_to(boards_url, :notice => 'Board was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @board.errors, :status => :unprocessable_entity }
       end
     end
     update_cache
@@ -77,7 +70,6 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(boards_url) }
-      format.xml  { head :ok }
     end
     update_cache
   end

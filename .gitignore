@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 public/pic/**/*
+public/assets/*
 public/index.html
 public/contact.html
 public/rules.html

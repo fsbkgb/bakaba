@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   
   def create
     @post = Post.find params[:post_id]
-    @comment = @post.comments.new(params[:comment])
+    @comment = @post.comments.new(params[:comment]) 
     @board = Board.find(@post.board_abbreviation)
     if @comment.media?
       @comment.pic.destroy if @comment.pic?

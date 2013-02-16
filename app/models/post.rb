@@ -45,7 +45,7 @@ class Post
     board = Board.find(self.board_abbreviation)
     if Post.where(board_abbreviation: board.abbreviation).length > board.maxthreads
       post = Post.where(board_abbreviation: board.abbreviation).ascending(:updated_at).first
-    post.destroy
+      post.destroy
     end
   end
 

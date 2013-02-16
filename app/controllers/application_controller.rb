@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     $threads_on_page = 8
     $bumplimit = 500
     $visible_comments = 5
-    $version = "0.4.8"
+    $version = "0.4.9"
   end
     
   def set_current_user

@@ -19,7 +19,7 @@
     <% if @board.pcaptcha? %>
       <tr>
         <td class="postblock">Verification: </td>
-        <td><%=raw recaptcha_tags :display => {:theme => 'white'} %></td>
+        <td><%=raw recaptcha_tags :display => {:theme => 'white'}, :ajax => true %></td>
       </tr>
    <% end %>
     <tr>

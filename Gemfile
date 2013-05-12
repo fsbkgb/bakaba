@@ -11,7 +11,7 @@ gem 'libv8'
 gem 'therubyracer'
 gem "mongoid"
 gem "bson_ext"
-gem 'mongoid_slug'
+gem 'mongoid_slug', "~> 2"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'jquery-rails'
 gem 'kaminari'

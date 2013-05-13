@@ -48,9 +48,8 @@
     <% if target.media? %>
       <br />
       <div class="content">
-        <div class="togglemedia">[<a href="javascript:toggleDiv('att_<%= target.number %>');">Show/Hide attachment</a>]</div>
-        <div class="attachment" id="att_<%= target.number %>">
-          <%=raw target.media %>
+        <div id="att_<%= target.number %>">
+          [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
         </div>
         <%=raw target.content %>
       </div>

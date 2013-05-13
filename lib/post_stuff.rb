@@ -95,16 +95,16 @@ module PostStuff
 
       if media.match(youtube_regex) or media.match(vimeo_regex) or media.match(vocaroo_regex) or media.match(pastebin_regex)
         media.gsub(youtube_regex) do
-          media = '<iframe src="http://www.youtube.com/embed/'+$3+'" width="410" height="270"></iframe>' unless $3.nil?
+          media = '<iframe src=\"http://www.youtube.com/embed/'+$3+'\" width=\"410\" height=\"270\"></iframe>' unless $3.nil?
         end
         media.gsub(vimeo_regex) do
-          media = '<iframe src="http://player.vimeo.com/video/'+$2+'" width="410" height="270"></iframe>' unless $2.nil?
+          media = '<iframe src=\"http://player.vimeo.com/video/'+$2+'\" width=\"410\" height=\"270\"></iframe>' unless $2.nil?
         end
         media.gsub(vocaroo_regex) do
-          media = '<embed src="http://vocaroo.com/player.swf?playMediaID='+$1+'&amp;autoplay=0" width="148" height="44" wmode="transparent" type="application/x-shockwave-flash"/><br /><small><a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_mp3">MP3</a>, <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_ogg">Ogg</a>, <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_flac">FLAC</a>, or <a href="http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_wav">WAV</a>.</small>' unless $1.nil?
+          media = '<embed src=\"http://vocaroo.com/player.swf?playMediaID='+$1+'&amp;autoplay=0\" width=\"148\" height=\"44\" wmode=\"transparent\" type=\"application/x-shockwave-flash\"/><br /><small><a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_mp3\">MP3</a>, <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_ogg\">Ogg</a>, <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_flac\">FLAC</a>, or <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_wav\">WAV</a>.</small>' unless $1.nil?
         end
         media.gsub(pastebin_regex) do
-          media = '<script src="http://pastebin.com/embed_js.php?i='+$1+'"></script>' unless $1.nil?
+          media = '<iframe src=\"http://pastebin.com/embed_iframe.php?i='+$1+'\" style=\"width:600px;height:300px\"></iframe>' unless $1.nil?
         end
       else
         media = nil

@@ -71,13 +71,9 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
   clear:left;
 }
 
-.pic, .attachment {
+.pic, *[id^="att_"] {
   float: left;
   padding: 7px;
-}
-
-.embedPastebin {
-  max-height: 400px;
 }
 
 iframe, img {
@@ -115,10 +111,6 @@ hr {
   cursor: help;
 }
 
-.attachment {
-  display: none;
-}
-
-.togglemedia {
+*[id^="att_"] {
   margin: 0.5em;
 }

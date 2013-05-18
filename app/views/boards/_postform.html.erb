@@ -6,7 +6,7 @@
   <table>
     <tr>   
       <td class="postblock">Title: </td>
-      <td><%= f.text_field :title %> <%= f.submit "Submit" %></td>
+      <td><%= f.text_field :title %> <%= f.submit "Submit", :disable_with => "Please wait..." %></td>
     </tr>
     <tr>
       <td class="postblock">Comment: </td>

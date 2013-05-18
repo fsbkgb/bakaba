@@ -16,7 +16,7 @@ a {
   &:hover { color: #800000; }
 }
 
-.reply {
+.reply, div#pop-up {
   @include reply;
   font-family: $serif;
   background:#D6DAF0;

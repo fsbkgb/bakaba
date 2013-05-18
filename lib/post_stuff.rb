@@ -50,7 +50,7 @@ module PostStuff
             end
           end
           if reply_found
-            reply_link = '<a href="'+post.slug+'#'+reply_number+'" onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">&gt;&gt;'+reply_number+'</a>'
+            reply_link = '<a href="'+post.slug+'#'+reply_number+'" id="popup_'+(board.comments + 1).to_s+'_'+reply_number+'" onclick="javascript:highlight('+"'_"+reply_number+"'"+', true);">>>'+reply_number+'</a>'
             content = content.gsub("&gt;&gt;"+reply_number, reply_link)
           end
         end
@@ -74,7 +74,7 @@ module PostStuff
             content = content.gsub("&gt;&gt;/"+board_abbr+"/"+reply_number, reply_link)
           end
         end
-
+        
         content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
         content.scan(/https?:\/\/[\S]+/i).each do |x|
           link='<a href="'+x.to_s+'" rel="nofollow">'+x.to_s+'</a>'

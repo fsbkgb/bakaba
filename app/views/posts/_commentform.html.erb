@@ -18,7 +18,7 @@
   <% end %>
     <tr>
       <td class="postblock">File:</td>
-      <td><%= f.file_field :pic %> <%= f.submit "Submit" %></td>
+      <td><%= f.file_field :pic %> <%= f.submit "Submit", :disable_with => "Please wait..." %></td>
     </tr>
     <tr>   
       <td class="postblock">Password:</td>

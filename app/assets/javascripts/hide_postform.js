@@ -1,4 +1,6 @@
-$(".nthread").click(function(){
-  $("form").slideToggle("fast");
-  $(this).toggleClass("active");
-});	
+$(function() {
+  $(".nthread").click(function() {
+    $("form").slideToggle("fast");
+    $(this).toggleClass("active");
+  });
+});

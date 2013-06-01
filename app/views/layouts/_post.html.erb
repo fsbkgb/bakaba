@@ -42,7 +42,7 @@
           <%= image_tag target.pic.url(:small) %>
         <% end %>
       </div>
-      <%=raw target.content %>
+      <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
     </div>
   <% else %>
     <% if target.media? %>
@@ -51,10 +51,11 @@
         <div id="att_<%= target.number %>">
           [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
         </div>
-        <%=raw target.content %>
+        <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
+        <%=raw target.media_thumb %>
       </div>
     <% end %>
   <% end %>
 <% else %>
-  <div class="content"><%=raw target.content %></div>
+  <div class="content"><%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %></div>
 <% end %>

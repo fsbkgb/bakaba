@@ -18,3 +18,4 @@ gem 'kaminari'
 gem 'sanitize'
 gem "cancan"
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'rinku', :require => 'rails_rinku'

@@ -76,10 +76,6 @@ module PostStuff
         end
         
         content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
-        content.scan(/https?:\/\/[\S]+/i).each do |x|
-          link='<a href="'+x.to_s+'" rel="nofollow">'+x.to_s+'</a>'
-          content = content.gsub(x.to_s, link)
-        end
         content.gsub! /\r\n/, '<br />'
         content.gsub! /(<br \/>){2,}/, '<br /><br />'
         content="<p>"+content+"</p>"

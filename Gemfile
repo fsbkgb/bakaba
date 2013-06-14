@@ -7,7 +7,6 @@ gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
 gem 'execjs'
-gem 'libv8'
 gem 'therubyracer'
 gem "mongoid"
 gem "bson_ext"

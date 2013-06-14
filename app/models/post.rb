@@ -9,6 +9,7 @@ class Post
   field :title
   field :content
   field :media
+  field :media_thumb
   field :number, :type => Integer
   field :password
   field :phash
@@ -17,7 +18,7 @@ class Post
   field :board_abbreviation
   field :post_slug
 
-  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :pic, :updated_at, :media
+  attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :pic, :updated_at, :media, :media_thumb
 
   belongs_to :board, :inverse_of => :posts
   embeds_many :comments

@@ -9,6 +9,7 @@ public/index.html
 public/contact.html
 public/rules.html
 public/help.html
+vendor/bundle/*
 *~
 .project
 .DS_Store

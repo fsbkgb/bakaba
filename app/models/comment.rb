@@ -8,6 +8,7 @@ class Comment
 
   field :content
   field :media
+  field :media_thumb
   field :number, :type => Integer
   field :created_at
   field :password
@@ -17,7 +18,7 @@ class Comment
   field :post_slug
   field :board_abbreviation
 
-  attr_accessible :content, :post_slug, :password, :show_id, :pic, :media
+  attr_accessible :content, :post_slug, :password, :show_id, :pic, :media, :media_thumb
 
   index ({ number: 1 })
 

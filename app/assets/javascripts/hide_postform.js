@@ -1,6 +1,6 @@
 $(function() {
   $(".nthread").click(function() {
-    $("form").slideToggle("fast");
+    $("form").slideToggle;
     $(this).toggleClass("active");
   });
 });

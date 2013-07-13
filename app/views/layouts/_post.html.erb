@@ -52,7 +52,6 @@
           [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
         </div>
         <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
-        <%=raw target.media_thumb %>
       </div>
     <% end %>
   <% end %>

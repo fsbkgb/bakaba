@@ -1,6 +1,6 @@
 A wakaba like imageboard on Rails 3.2 with a MongoDB
 Installation:
-1. bundle install
+1. `bundle install`
 2. setup your recaptcha keys in config/initializers/recaptcha.rb and configure your database in config/mongoid.yml
 3. (re)start your server
 4. go to yourboard.org/users and create user with 'adm' role

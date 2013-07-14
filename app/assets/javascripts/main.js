@@ -6,8 +6,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require hide_postform
-//= require popup_post
-//= require refs
-//= require set_pass
-//= require styleswitch
+//= require twitter/bootstrap
+//= require bootstrap

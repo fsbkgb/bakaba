@@ -13,8 +13,9 @@ gem 'sanitize'
 gem "cancan"
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'rinku', :require => 'rails_rinku'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'twitter-bootstrap-rails'
 group :assets do
-  gem 'twitter-bootstrap-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'

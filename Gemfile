@@ -3,11 +3,6 @@ source 'http://rubygems.org'
 gem "rails", "~> 3.2"
 gem "cocaine", "~> 0.3.0"
 gem 'json'
-gem 'sass-rails'
-gem 'coffee-rails'
-gem 'uglifier'
-gem 'execjs'
-gem 'therubyracer'
 gem "mongoid"
 gem "bson_ext"
 gem 'mongoid_slug', "~> 2"
@@ -18,3 +13,12 @@ gem 'sanitize'
 gem "cancan"
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'rinku', :require => 'rails_rinku'
+group :assets do
+  gem 'twitter-bootstrap-rails'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+  gem 'execjs'
+  gem 'therubyracer'
+  gem "less-rails"
+end

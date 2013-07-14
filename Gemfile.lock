@@ -42,6 +42,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    commonjs (0.2.6)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -55,6 +56,11 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    less (2.3.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.3)
+      actionpack (>= 3.1)
+      less (~> 2.3.1)
     libv8 (3.11.8.17)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -132,6 +138,11 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.7)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -149,6 +160,7 @@ DEPENDENCIES
   jquery-rails
   json
   kaminari
+  less-rails
   mongoid
   mongoid-paperclip
   mongoid_slug (~> 2)
@@ -158,4 +170,5 @@ DEPENDENCIES
   sanitize
   sass-rails
   therubyracer
+  twitter-bootstrap-rails
   uglifier

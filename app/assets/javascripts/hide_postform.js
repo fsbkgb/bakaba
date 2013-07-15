@@ -1,6 +1,10 @@
-$(function() {
-  $(".nthread").click(function() {
-    $("form").slideToggle;
-    $(this).toggleClass("active");
-  });
+$(document).ready(function(){
+ 
+        $("form").hide();
+        $(".nthread").show();
+ 
+    $('.nthread').click(function(){
+    $("form").slideToggle("fast");
+    });
+ 
 });

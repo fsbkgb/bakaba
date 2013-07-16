@@ -1,6 +1,6 @@
 $(document).ready(function(){
  
-        $("form").hide();
+        $(".pform").hide();
         $(".nthread").show();
  
     $('.nthread').click(function(){

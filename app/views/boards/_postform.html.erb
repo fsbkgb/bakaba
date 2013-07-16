@@ -1,7 +1,7 @@
 <div class="newthread">
 	[<a href="#" class="nthread">New Thread</a>]
 </div>
-<%= form_for [@board, Post.new], :html => { :multipart => true } do |f| %>
+<%= form_for [@board, Post.new], :html => { :class => "pform", :multipart => true } do |f| %>
   <%= f.hidden_field :board_abbreviation, :value => @board.abbreviation %>
   <table>
     <tr>   

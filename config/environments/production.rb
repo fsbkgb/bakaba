@@ -6,7 +6,7 @@ Bakaba::Application.configure do
   config.serve_static_assets = false
   config.assets.compress = true
   config.assets.compile = true
-  config.assets.precompile += %w( burichan.css futaba.css gurochan.css photon.css bootstrap_and_overrides.css )
+  config.assets.precompile += %w( burichan.css futaba.css gurochan.css photon.css pages.css )
   config.assets.digest = true
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify

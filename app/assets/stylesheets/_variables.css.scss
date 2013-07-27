@@ -10,8 +10,9 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
 @mixin reply{
   padding: 0;
   margin: 0;
-  margin-top: 3px;
+  margin-top: 5px;
   border-spacing: 2px;
+  border-collapse: separate;
 }
 
 .pagination, .navbar, .goback {
@@ -117,6 +118,7 @@ div#pop-up {
 body {
   margin: auto;
   max-width: 1200px;
+  padding: 0 8px;
 }
 
 .pure-form {

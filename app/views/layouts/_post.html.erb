@@ -36,8 +36,8 @@
     <div class="file">
       Click on image for full size view (<%= target.pic_file_size/1024 %> kB)
     </div>
-    <div class="content">
-      <div class="pic">
+    <div class="pure-g-r">
+      <div class="pic pure-u">
         <%= link_to(target.pic.url, :target => "_blank") do %>
           <%= image_tag target.pic.url(:small) %>
         <% end %>
@@ -51,8 +51,8 @@
   <% else %>
     <% if target.media? %>
       <br />
-      <div class="content">
-        <div id="att_<%= target.number %>">
+      <div class="pure-g-r">
+        <div class="pic pure-u" id="att_<%= target.number %>">
           [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
         </div>
         <% if target.content != "<p></p>" %>

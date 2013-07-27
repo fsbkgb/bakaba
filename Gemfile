@@ -15,11 +15,11 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'rinku', :require => 'rails_rinku'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'twitter-bootstrap-rails'
+gem "less-rails"
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'execjs'
   gem 'therubyracer'
-  gem "less-rails"
 end

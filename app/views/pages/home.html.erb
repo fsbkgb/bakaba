@@ -1,13 +1,18 @@
-<div class="container-fluid">
-  <div class="span9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta neque at ornare porttitor. Curabitur ut quam at arcu viverra tincidunt eget non ipsum. Donec suscipit mattis pellentesque. Vivamus et turpis nibh. Suspendisse lacus risus, tempus elementum popipo sodales, adipiscing sit amet nisi. Nam sodales tincidunt nibh, in rhoncus magna sagittis ut. Ut dolor erat, ornare ut tempor sit amet, aliquet ac nisi. Donec fringilla id urna sed hendrerit. Phasellus lobortis felis sit amet sapien convallis interdum.</div>
+<h1 class="splash-head">
+  Lorem ipsum. Popipo.
+</h1>
+  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta neque at ornare porttitor. Curabitur ut quam at arcu viverra tincidunt eget non ipsum. Donec suscipit mattis pellentesque. Vivamus et turpis nibh. Suspendisse lacus risus, tempus elementum sodales, adipiscing sit amet nisi. Nam sodales tincidunt nibh, in rhoncus magna sagittis ut. Ut dolor erat, ornare ut tempor sit amet, aliquet ac nisi. Donec fringilla id urna sed hendrerit. Phasellus lobortis felis sit amet sapien convallis interdum.</div>
+  <div class="pure-g-r">
   <% @categories.each do |category| %> 
-    <div class="span4">
+    <div class="pure-u-1-4">
+      <div class="l-box responsive_headline">
       <h4><%= category.name %></h4>
         <ul>  
           <% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>
-            <li><%= link_to '/'+board.abbreviation+'/ -  '+board.title, board.abbreviation %></li>      
+            <li><%= link_to board.title, board.abbreviation %></li>      
           <% end %>
         </ul>
+      </div>
     </div>
   <% end %>
-</div>
+  </div>

@@ -4,7 +4,7 @@ $(document).ready(function(){
         $(".nthread").show();
  
     $('.nthread').click(function(){
-    $("form").slideToggle;
+    $(".pform").slideToggle();
     });
  
 });

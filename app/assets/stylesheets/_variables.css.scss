@@ -42,24 +42,15 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
 }
 
 .newthread {
-  margin: 8px 0px;
+  text-align:center;
 }
 
-.postarea, .credits {
+.credits {
   text-align: center;
-}
-
-.postarea table {
-  margin: auto;
-  text-align: left;
 }
 
 .pform {
   display: none;
-}
-
-.newthread {
-  margin: 8px 0px;
 }
 
 .styles {
@@ -73,6 +64,7 @@ $sans: ubuntu, droid sans, liberation sans, verdana, helvetica, sans-serif;
 .pic, *[id^="att_"] {
   float: left;
   padding: 7px;
+  max-width: 90%;
 }
 
 iframe, img {
@@ -120,4 +112,15 @@ div#pop-up {
   -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
   box-shadow: 0 0 10px rgba(0,0,0,0.2)
+}
+
+body {
+  margin: auto;
+  max-width: 1200px;
+}
+
+.pure-form {
+  margin: auto;
+  max-width: 800px;
+  padding-left: 10px;
 }

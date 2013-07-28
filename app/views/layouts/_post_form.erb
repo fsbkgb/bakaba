@@ -19,7 +19,6 @@
 </div>
 
 <% if captcha %>
-<%=raw recaptcha_tags :display => {:theme => 'custom'}, :ajax => true %>
 <div class="pure-control-group">
   <label></label>
   <div class="pure-u-1-4" id="recaptcha_image"></div>
@@ -28,6 +27,7 @@
   <label for="recaptcha_response_field">Verification</label>
   <input class="pure-u-1-4" type="text" id="recaptcha_response_field" name="recaptcha_response_field" /><strong style="font-size: 10px;"><a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a></strong>
 </div>
+<%=raw recaptcha_tags :display => {:theme => 'custom'}, :ajax => true %>
 <% end %>
 
 <div class="pure-control-group">

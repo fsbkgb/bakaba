@@ -2,46 +2,7 @@
 <%= form_for [@post, Comment.new], :html => { :multipart => true, :class => "pure-form pure-form-aligned" } do |f| %>
 <%= f.hidden_field :post_slug, :value => @post.slug %>
 <fieldset>
-
-<div class="pure-control-group">
-  <label for="comment">Comment</label>
-  <%= f.text_area :content, :rows => 10, :class => "pure-input-2-3", :id => "comment" %>
-</div>
-
-<div class="pure-control-group">
-  <label for="file">File</label>
-  <%= f.file_field :pic, :id => "file" %>
-</div>
-
-<div class="pure-control-group">
-  <label for="media">Media</label>
-  <%= f.text_field :media, :class => "pure-input-1-2", :id => "media" %>
-</div>
-
-<div class="pure-control-group">
-  <label></label>
-  <div class="pure-u-1-2">(<span class="underline" title="eg. http://www.youtube.com/watch?v=oHg5SJYRHA0">YouTube</span>, <span class="underline" title="eg. http://vimeo.com/1234567">Vimeo</span>, <span class="underline" title="eg. http://vocaroo.com/i/1234567890ab">Vocaroo</span>, <span class="underline" title="eg. http://pastebin.com/1a2b3c4d">Pastebin</span>)</div>
-</div>
-
-<% if @board.ccaptcha? %>
-<div class="pure-control-group">
-  <label for="vrfy">Verification</label>
-  <div class="pure-u-1-4"><%=raw recaptcha_tags :display => {:theme => 'white'}, :ajax => true, :id => "vrfy" %></div>
-</div>
-<% end %>
-
-<div class="pure-control-group">
-  <label for="pass">Password</label>
-  <%= f.password_field :password, :value => cookies[:password], :class => "pure-u-1-5", :id => "pass" %>  <div class="pure-u-2-5"><%= f.check_box :show_id %> Show my id</div>
-</div>
-
-<div class="pure-control-group">
-  <label></label>
-  <%= f.submit "Submit", :disable_with => "Please wait...", :class => "pure-button pure-button-small pure-button-primary" %>
-</div>
-
+ <%= render "layouts/post_form", :f => f, :captcha => @board.ccaptcha? %>
 </fieldset>
-
 <% end %>
-
 <hr />

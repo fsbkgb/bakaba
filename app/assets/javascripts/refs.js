@@ -1,5 +1,5 @@
 function insert(text) {
-    var textarea = document.getElementById("comment_content");
+    var textarea = document.getElementById("comment");
     if (textarea) {
         if (textarea.createTextRange && textarea.caretPos) { // IE
             var caretPos = textarea.caretPos;

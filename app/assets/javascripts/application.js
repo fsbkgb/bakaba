@@ -11,3 +11,4 @@
 //= require refs
 //= require set_pass
 //= require styleswitch
+//= require pin

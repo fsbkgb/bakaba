@@ -19,6 +19,7 @@ Bakaba::Application.routes.draw do
   match '/boards/:board_id' => "boards#update", constraints: {board_id: /\w{1,3}/}
   match ':post_id' => "posts#show", constraints: {post_id: /\w{1,3}-\d+/}
   match 'del/:post_id' => "posts#destroy", constraints: {post_id: /\w{1,3}-\d+/}
+  match 'pin/:post_id' => "posts#pin", constraints: {post_id: /\w{1,3}-\d+/}
   match 'del/:board_id' => "boards#destroy", constraints: {board_id: /\w{1,3}/}
   match 'del/:post_id/post/:comment_id' => "comments#destroy", constraints: {post_id: /\w{1,3}-\d+/, comment_id: /\d+/}
   match "/boards/:id" => redirect("/%{id}")

@@ -16,6 +16,7 @@ class Post
   field :author
   field :board_abbreviation
   field :post_slug
+  field :pinned, :type => Boolean
 
   attr_accessible :title, :content, :board_abbreviation, :password, :show_id, :pic, :updated_at, :media
 

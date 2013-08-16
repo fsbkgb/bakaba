@@ -77,4 +77,19 @@ class PostsController < ApplicationController
     render "err"
   end
 
+  def pin
+    @post = Post.find params[:post_id]
+    if current_user
+      if @post.pinned?
+        @post.pinned = false
+        @post.update_attribute(:updated_at, Time.now)
+      else
+        @post.pinned = true
+        @post.update_attribute(:updated_at, Time.now + 30000000)
+      end
+      @post.save
+    end
+    redirect_to @post
+  end
+
 end

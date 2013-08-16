@@ -1,4 +1,5 @@
 <% if oppost == true %>
+  <span class="pin"><%= link_to "Pin", '/pin/'+target.slug %></span>
   <%= link_to image_tag('del.png'), '/del/'+target.slug, :confirm => 'Are you sure?', :method => :delete %>
 <% else %>
   <%= link_to image_tag('del.png'), '/del/'+post_slug+'/post/'+target.number.to_s, :confirm => 'Are you sure?', :method => :delete %>
@@ -30,6 +31,9 @@
 </span>
 <% if params[:controller] == 'boards' and oppost == true  %>
   [<%= link_to "Show" , target.slug %>]
+  <% if target.pinned? %>
+    <%= image_tag('pin.png', :alt => "Thread pinned") %>
+  <% end %>
 <% end %>
 <% if target.pic.file? or target.media? %>
   <% if target.pic.file? %>

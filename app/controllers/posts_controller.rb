@@ -88,6 +88,7 @@ class PostsController < ApplicationController
         @post.update_attribute(:updated_at, Time.now + 30000000)
       end
       @post.save
+      update_cache
     end
     redirect_to @post
   end

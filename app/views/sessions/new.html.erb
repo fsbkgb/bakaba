@@ -2,15 +2,27 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :name %><br />
+<%= form_tag sessions_path, :class => "pure-form pure-form-aligned" do %>
+<fieldset>
+  <div class="pure-control-group">
+    <%= label_tag :name %>
     <%= text_field_tag :name %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
+  </div>
+  <div class="pure-control-group">
+    <%= label_tag :password %>
     <%= password_field_tag :password %>
-  </p>
-  <%=raw recaptcha_tags :display => {:theme => 'white'} %>
-  <p class="button"><%= submit_tag "Log in" %></p>
+  </div>
+<div class="pure-control-group">
+  <label></label>
+  <div class="pure-u-1-4" id="recaptcha_image"></div>
+</div>
+<div class="pure-control-group">
+  <label for="recaptcha_response_field">Verification</label>
+  <input class="pure-u-1-4" type="text" id="recaptcha_response_field" name="recaptcha_response_field" /><strong style="font-size: 10px;"><a href="javascript:Recaptcha.reload()">Get another CAPTCHA</a></strong>
+</div>
+<%=raw recaptcha_tags :display => {:theme => 'custom'}, :ajax => true %>
+  <div class="pure-controls">
+    <%= submit_tag "Log in", :class => "pure-button pure-button-small pure-button-primary" %>
+  </div>
+</fieldset>
 <% end %>

@@ -35,7 +35,6 @@
   <%= f.password_field :password, :value => cookies[:password], :class => "pure-u-1-5", :id => "pass" %>  <div class="pure-u-2-5"><%= f.check_box :show_id %> Show my id</div>
 </div>
 
-<div class="pure-control-group">
-  <label></label>
+<div class="pure-controls">
   <%= f.submit "Submit", :disable_with => "Please wait...", :class => "pure-button pure-button-small pure-button-primary" %>
 </div>

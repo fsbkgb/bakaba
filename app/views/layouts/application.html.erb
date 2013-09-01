@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<% if params[:controller] == 'pages' %>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.2.1/base-min.css&pure/0.2.1/grids-min.css&pure/0.2.1/forms-min.css&pure/0.2.1/buttons-min.css&pure/0.2.1/menus-min.css">
+<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and params[:action] != 'show') or params[:controller] == 'categories' %>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
     <%= stylesheet_link_tag "pages", :title => "Pages", :rel => "stylesheet" %>
 <% else %>
     <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.2.1/base-min.css&pure/0.2.1/grids-min.css&pure/0.2.1/forms-min.css&pure/0.2.1/buttons-min.css">
@@ -17,7 +17,7 @@
     <%= csrf_meta_tag %>
 <% end %>
 </head>
-<% if params[:controller] == 'pages' %>
+<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and params[:action] != 'show') or params[:controller] == 'categories' %>
 <body>
 
 <div class="content">
@@ -35,13 +35,17 @@
 
     <div class="splash">
         <div class="pure-g-r">
+          <% if params[:controller] == 'pages' or params[:controller] == 'sessions' %>
             <div class="pure-u-1-3">
                 <div class="l-box splash-image">
                     <%= image_tag("logo.png", :size => "350x350", :alt => "logo")%>
                 </div>
             </div>
-
             <div class="pure-u-2-3">
+          <% end %>
+          <% if params[:controller] != 'pages' and params[:controller] != 'sessions' %>
+            <div class="pure-u-1">
+          <% end %>
                 <div class="l-box splash-text">
                     <%= yield %>
                 </div>

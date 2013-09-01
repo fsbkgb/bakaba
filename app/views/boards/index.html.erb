@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h1>Listing boards</h1>
-<hr />
 <% @categories.each do |category| %> 
   <strong><%= category.name %></strong>
   [
    <%= link_to 'Edit', edit_category_path(category) %>
   <% if Board.where(:category_id => category.id).size == 0 %>
     /
-    <%= link_to 'Destroy', category, :confirm => 'RLY?', :method => :delete %>
+    <%= link_to 'Destroy', category_path(category), :confirm => 'RLY?', :method => :delete %>
   <% end %>
   ]
   <% if Board.where(:category_id => category.id).size > 0%>
-    <table style="padding-left: 20px">
+    <table class="pure-table">
+     <thead>
       <tr>
         <th>Abbreviation</th>
         <th>Title</th>
@@ -20,10 +20,9 @@
         <th>Hidden</th>
         <th>Captcha for new threads</th>
         <th>Captcha for comments</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
       </tr>
+     </thead>
     <% Board.where(:category_id => category.id).asc(:abbreviation).each do |board| %>
       <tr>
   	    <td><%= board.abbreviation %></td>
@@ -33,16 +32,13 @@
         <td><%= board.hidden %></td>
         <td><%= board.pcaptcha %></td>
         <td><%= board.ccaptcha %></td>
-        <td>[ <%= link_to 'Show', board.abbreviation %> /</td>
-        <td><%= link_to 'Edit', edit_board_path(board) %> /</td>
-        <td><%= link_to 'Destroy', '/del/'+board.abbreviation, :confirm => 'Are you sure?', :method => :delete %> ]</td>
+        <td>[ <%= link_to 'Show', board.abbreviation %> / <%= link_to 'Edit', edit_board_path(board) %> / <%= link_to 'Destroy', '/del/'+board.abbreviation, :confirm => 'Are you sure?', :method => :delete %> ]</td>
       </tr>
     <% end %>
     </table>
+    <br />
   <% end %>
-  <hr />
 <% end %>
-<br />
 [ 
 <%= link_to 'Home', root_path %> /
 <%= link_to 'New Category', new_category_path %>

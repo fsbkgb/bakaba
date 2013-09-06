@@ -1,4 +1,3 @@
-<div id="pop-up"></div>
 <% cache 'full-thread_'+@post.slug do %>
   <%= render "layouts/post", :target => @post, :reflink_pfx => "", :oppost => true %>
   <% if @post.comments.size > 0  %>
@@ -13,3 +12,4 @@
     <% end %>
   <% end %>
 <% end %>
+<div id="pop-up"></div>

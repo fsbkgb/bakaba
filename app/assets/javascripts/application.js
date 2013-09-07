@@ -6,9 +6,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require styleswitch
 //= require hide_postform
+//= require ezpz_tooltip
 //= require popup_post
 //= require refs
 //= require set_pass
-//= require styleswitch
 //= require pin
+//= require popup_img

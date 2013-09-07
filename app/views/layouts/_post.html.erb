@@ -42,7 +42,7 @@
     </div>
     <div class="pure-g-r">
       <div class="pic pure-u">
-        <%= link_to(target.pic.url, :target => "_blank") do %>
+        <%= link_to(target.pic.url, :class=> "lightbox_trigger") do %>
           <%= image_tag target.pic.url(:small) %>
         <% end %>
       </div>

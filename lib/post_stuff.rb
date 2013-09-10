@@ -32,10 +32,28 @@ module PostStuff
     def parse(content, board)
       content.strip!
       unless content.nil?
+
         content.gsub!('&', '&amp;')
         content.gsub!('<', '&lt;')
         content.gsub!('>', '&gt;')
-    
+
+        code_blocks = []
+        content.gsub!(/``(.+?)``/m) do |block|
+          code_blocks.push($1)
+          "<>"
+        end
+
+        links = []
+        content.gsub!(/(http(s?):\/\/.+)/i) do |block2|
+          links.push($1)
+          "&&&"
+        end
+
+        content.gsub!(/(\*\*)(.+?)\1/, '<b>\2</b>')
+        content.gsub!(/(\/\/)(.+?)\1/, '<i>\2</i>')
+        content.gsub!(/(\-\-)(.+?)\1/, '<del>\2</del>')
+        content.gsub!(/(\%\%)(.+?)\1/, '<span class="spoiler">\2</span>')
+        
         content.scan(/&gt;&gt;\d+/).first(8).each do |x|
           reply_number = x.to_s.match(/\d+/)[0]
           if board.posts.where(:number => reply_number).length > 0
@@ -76,9 +94,11 @@ module PostStuff
         end
         
         content.gsub!(/^&gt;(.+)$/, "<span class='quote'>&gt;\\1</span><br />")
-        content.gsub! /\r\n/, '<br />'
-        content.gsub! /(<br \/>){2,}/, '<br /><br />'
-        content="<p>"+content+"</p>"
+        content.gsub!(/\r\n/, '<br />')
+        content.gsub!(/(<br \/>){2,}/, '<br /><br />')
+        code_blocks.each{ |block| content.sub!(/<>/){ '<pre><code>'+block+'</code></pre>' } }
+        links.each{ |block2| content.sub!(/&&&/){ block2 } }
+        content
       end
     end
   

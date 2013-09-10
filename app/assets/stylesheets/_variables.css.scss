@@ -72,7 +72,7 @@ iframe, img {
   border: none;
 }
 
-p {
+.content {
   margin: 0.5em;
 }
 
@@ -110,9 +110,9 @@ hr {
 div#pop-up {
   display:none;
   position:absolute;
-  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  box-shadow: 0 0 10px rgba(0,0,0,0.4)
+  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  box-shadow: 0 0 15px rgba(0,0,0,0.7)
 }
 
 body {
@@ -132,7 +132,7 @@ body {
 }
 
 #lightbox {
-    position:fixed; /* keeps the lightbox window in the current viewport */
+    position:fixed;
     top:0;
     left:0;
     width:100%;
@@ -149,4 +149,24 @@ body {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+.spoiler {
+  background: #BBBBBB;
+  color: #BBBBBB;
+} 
+
+.spoiler:hover {
+  background: none;
+  color: inherit;
+}
+
+pre {
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #eeeeee;
+  overflow: auto;
+  width: auto;
+  max-height: 600px;
+  font-size: 12px;
 }

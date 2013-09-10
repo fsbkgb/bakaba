@@ -46,7 +46,7 @@
           <%= image_tag target.pic.url(:small) %>
         <% end %>
       </div>
-      <% if target.content != "<p></p>" %>
+      <% if target.content? %>
         <div class="pure-u-3-4">
           <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
         </div>
@@ -59,7 +59,7 @@
         <div class="pic pure-u" id="att_<%= target.number %>">
           [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
         </div>
-        <% if target.content != "<p></p>" %>
+        <% if target.content? %>
           <div class="pure-u-3-4">
             <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
           </div>

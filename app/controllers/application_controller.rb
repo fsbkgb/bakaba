@@ -10,8 +10,9 @@ class ApplicationController < ActionController::Base
     $mod_tag = '## Mod ##'
     $threads_on_page = 8
     $bumplimit = 500
-    $visible_comments = 5
-    $version = "0.5.2"
+    $img_maxsize = 4 #in megabytes
+    $visible_comments = 5 #show last 5 posts of the thread on a board page
+    $version = "0.5.3"
   end
     
   def set_current_user

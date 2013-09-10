@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
         */
         if ($('#lightbox').length > 0) { // #lightbox exists
             //place href as img src value
-            $('#lightbox_content').html('<img src="' + image_href + '" />');
+            $('#lightbox_content').html('<img id="lightbox_image" src="' + image_href + '" />');
             //show lightbox window - you could use .show('fast') for a transition
             $('#lightbox').fadeIn(100);
         }
@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
             var lightbox =
             '<div id="lightbox">' +
                 '<div id="lightbox_content">' + //insert clicked link's href into img src
-                    '<img src="' + image_href +'" />' +
+                    '<img id="lightbox_image" src="' + image_href +'" />' +
                 '</div>' +
             '</div>';
             //insert lightbox HTML into page

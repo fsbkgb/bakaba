@@ -2,7 +2,7 @@ class Board
 
   include Mongoid::Document
   include Mongoid::Slug
-
+  
   field :category
   field :title
   field :abbreviation

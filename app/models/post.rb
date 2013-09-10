@@ -26,6 +26,7 @@ class Post
   index ({ updated_at: 1 })
 
   has_mongoid_attached_file :pic, :styles => { :small => "220x220>" },
+                                  :processors => [:conditional_converter],
                                   :path => ":rails_root/public/pic/:board/:style/:filename",
                                   :url  => "/pic/:board/:style/:filename"
 

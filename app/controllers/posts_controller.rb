@@ -11,11 +11,7 @@ class PostsController < ApplicationController
       @title = "| "+@board.title+" | "+@post.title
     else
       if @post.content?
-        if @post.content.length < 31
-          @title = "| "+@board.title+" | "+Sanitize.clean(@post.content)
-        else
-          @title = "| "+@board.title+" | "+Sanitize.clean(@post.content.first(30)+"...")
-        end
+        @title = "| "+@board.title+" | "+Sanitize.clean(@post.content)
       else
         @title = "| "+@board.title+" | Thread #"+@post.number.to_s
       end

@@ -38,13 +38,13 @@ class Post
   after_create :check_posts_length
 
   def set_params
-    board = Board.find(self.board_abbreviation)
+    board = Board.find(board_abbreviation)
     set_attr(board)
-    self._slugs = [board.abbreviation+'-'+(self.number).to_s]
+    self._slugs = [board.abbreviation+'-'+(number).to_s]
   end
 
   def check_posts_length
-    board = Board.find(self.board_abbreviation)
+    board = Board.find(board_abbreviation)
     if Post.where(board_abbreviation: board.abbreviation).length > board.maxthreads
       post = Post.where(board_abbreviation: board.abbreviation).ascending(:updated_at).first
       post.destroy

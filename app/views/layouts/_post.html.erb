@@ -48,7 +48,7 @@
       </div>
       <% if target.content? %>
         <div class="pure-u-3-4">
-          <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
+          <div class="content"><%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %></div>
         </div>
       <% end %>
     </div>
@@ -61,7 +61,7 @@
         </div>
         <% if target.content? %>
           <div class="pure-u-3-4">
-            <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
+            <div class="content"><%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %></div>
           </div>
         <% end %>
       </div>

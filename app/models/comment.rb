@@ -35,15 +35,15 @@ class Comment
   after_create :bump
 
   def set_params
-    post = Post.find(self.post_slug)
+    post = Post.find(post_slug)
     board = Board.find(post.board_abbreviation)
     set_attr(board)
-    self._slugs = [self.number.to_s]
+    self._slugs = [number.to_s]
     self.board_abbreviation = board.abbreviation
   end
 
   def bump
-    post = Post.find(self.post_slug)
+    post = Post.find(post_slug)
     if post.comments.size < $bumplimit and post.pinned == false 
       post.touch
     end

@@ -44,8 +44,8 @@ class Comment
 
   def bump
     post = Post.find(post_slug)
-    if post.comments.size < $bumplimit and post.pinned == false 
-      post.touch
+    if post.comments.size < $bumplimit
+      post.touch unless post.pinned
     end
   end
 

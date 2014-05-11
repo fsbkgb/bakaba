@@ -16,6 +16,4 @@ vendor/bundle/*
 .tmp__*
 .sass-cache/
 .idea/
-.dotcloud/
-.dotcloudignore
-dotcloud.yml
+.kateproject

@@ -21,3 +21,6 @@ group :assets do
   gem 'execjs'
   gem 'therubyracer'
 end
+group :development do
+  gem 'thin'
+end

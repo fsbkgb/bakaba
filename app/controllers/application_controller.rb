@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     $bumplimit = 500
     $img_maxsize = 4 #in megabytes
     $visible_comments = 5 #show last 5 posts of the thread on a board page
-    $version = "0.6.1"
+    $version = "0.6.2"
   end
     
   def set_current_user

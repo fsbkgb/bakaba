@@ -1,0 +1,7 @@
+<div class="content">
+  <% if params[:action] == 'catalog' %>
+    <%=raw truncate(Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"'), length: 140, separator: ' ') %>
+  <% else %>
+    <%=raw Rinku.auto_link(target.content, :urls, 'target="_blank" rel="nofollow"') %>
+  <% end %>
+</div>

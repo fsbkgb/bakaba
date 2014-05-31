@@ -1,11 +1,11 @@
 <% cache 'full-thread_'+@post.slug do %>
-  <%= render "layouts/post", :target => @post, :reflink_pfx => "", :oppost => true %>
+  <%= render "layouts/post", :target => @post, :reflink_pfx => "", :oppost => true, :catalogue => false %>
   <% if @post.comments.size > 0  %>
     <% @post.comments.asc(:number).each do |comment| %>
       <table class="reply" id="reply_<%= comment.number %>">
         <tr>
           <td>
-            <%= render "layouts/post", :target => comment, :reflink_pfx => "", :post_slug => @post.slug, :oppost => false %>
+            <%= render "layouts/post", :target => comment, :reflink_pfx => "", :post_slug => @post.slug, :oppost => false, :catalogue => false %>
           </td>
         </tr>
       </table>

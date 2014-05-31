@@ -23,6 +23,16 @@ class BoardsController < ApplicationController
       format.html # show.html.erb
     end
   end
+  
+  def catalog
+    @categories = Category.all
+    @board = Board.find params[:board_id]
+    @posts = @board.posts.order_by([:created_at, :DESCENDING]).page(params[:page]).per($threads_on_page*$visible_comments)
+    @title = "catalog | "+@board.title
+    respond_to do |format|
+      format.html # show.html.erb
+    end
+  end
 
   def new
     @title = "| New Board"

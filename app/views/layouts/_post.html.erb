@@ -30,7 +30,7 @@
   <% end %> 
 </span>
 <% if params[:controller] == 'boards' and oppost == true  %>
-  [<%= link_to "Show" , target.slug %>]
+  [<%= link_to "Show" , '/'+target.slug %>]
   <% if target.pinned? %>
     <%= image_tag('pin.png', :alt => "Thread pinned") %>
   <% end %>
@@ -43,7 +43,11 @@
     <div class="pure-g-r">
       <div class="pic pure-u">
         <%= link_to(target.pic.url, :class=> "lightbox_trigger") do %>
-          <%= image_tag target.pic.url(:small) %>
+          <% if catalogue == true  %>
+            <%= image_tag target.pic.url(:catalog) %>
+          <% else %>
+            <%= image_tag target.pic.url(:small) %>
+          <% end %>
         <% end %>
       </div>
       <% if target.content? %>

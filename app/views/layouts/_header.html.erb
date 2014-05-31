@@ -8,6 +8,13 @@
 <% cache 'title_'+@board.abbreviation do %>
 <div class="pagetitle">
   /<%= @board.abbreviation %>/ &ndash; <%= @board.title %>
+  <small>[
+    <% if params[:action] == 'show' %>
+      <%= link_to "Catalog", 'catalog/'+@board.abbreviation, {:title => @board.title} %>
+    <% else %>
+      <%= link_to "Board", '/'+@board.abbreviation, {:title => @board.title} %>
+    <% end %>
+  ]</small>
   <hr />
 </div>
 <% end %>

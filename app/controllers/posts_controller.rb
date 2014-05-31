@@ -54,6 +54,7 @@ class PostsController < ApplicationController
   
   def update_cache
     expire_fragment('thread_'+@post.slug)
+    expire_fragment('catalog-thread_'+@post.slug)
     expire_fragment('full-thread_'+@post.slug)
   end
 

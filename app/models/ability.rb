@@ -5,7 +5,7 @@ class Ability
     if user.role == "adm"
       can :manage, :all
     else
-      can :show, Board
+      can [:show, :catalog], Board
       can :manage, [Post, Comment]
     end
   end

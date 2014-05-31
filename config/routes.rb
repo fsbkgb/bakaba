@@ -15,6 +15,7 @@ Bakaba::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/rules', :to => 'pages#rules'
   match ':board_id' => "boards#show", constraints: {board_id: /\w{1,3}/}
+  match 'catalog/:board_id' => "boards#catalog", constraints: {board_id: /\w{1,3}/}
   match '/new/board' => "boards#new"
   match '/boards/:board_id' => "boards#update", constraints: {board_id: /\w{1,3}/}
   match ':post_id' => "posts#show", constraints: {post_id: /\w{1,3}-\d+/}

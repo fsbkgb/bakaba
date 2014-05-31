@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and params[:action] != 'show') or params[:controller] == 'categories' %>
+<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and (params[:action] != 'show' and params[:action] != 'catalog')) or params[:controller] == 'categories' %>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
     <%= stylesheet_link_tag "pages", :title => "Pages", :rel => "stylesheet" %>
 <% else %>
@@ -17,7 +17,7 @@
     <%= csrf_meta_tag %>
 <% end %>
 </head>
-<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and params[:action] != 'show') or params[:controller] == 'categories' %>
+<% if params[:controller] == 'pages' or params[:controller] == 'users' or params[:controller] == 'sessions' or (params[:controller] == 'boards' and (params[:action] != 'show' and params[:action] != 'catalog')) or params[:controller] == 'categories' %>
 <body>
 
 <div class="content">

@@ -2,7 +2,7 @@
 <% cache 'thread_'+post.slug do %>
   <div class="thread" id="thread_<%= post.number %>">
     <div class="oppost">
-      <%= render "layouts/post", :target => post, :reflink_pfx => post.slug, :oppost => true %>
+      <%= render "layouts/post", :target => post, :reflink_pfx => post.slug, :oppost => true, :catalogue => false %>
     </div>
     <% if post.comments.length > $visible_comments+1 %>
       <% @omcomm = (post.comments.length)-$visible_comments %>	
@@ -15,7 +15,7 @@
       <table class="reply" id="reply_<%= comment.number %>">
         <tr>
           <td>
-            <%= render "layouts/post", :target => comment, :reflink_pfx => post.slug, :post_slug => post.slug, :oppost => false %>
+            <%= render "layouts/post", :target => comment, :reflink_pfx => post.slug, :post_slug => post.slug, :oppost => false, :catalogue => false %>
           </td>
         </tr>
       </table>	

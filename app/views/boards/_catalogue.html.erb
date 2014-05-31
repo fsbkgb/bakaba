@@ -1,0 +1,13 @@
+<% @posts.each do |post| %>
+<% cache 'catalog-thread_'+post.slug do %>
+  <div class="thread" id="thread_<%= post.number %>">
+    <div class="oppost">
+      <%= render "layouts/post", :target => post, :reflink_pfx => post.slug, :oppost => true, :catalogue => true %>
+    </div>
+    <% if post.comments.length > 0 %>
+      <span class="omittedposts"><%= post.comments.length %> comments omitted. Click Show to view.</span>			
+    <% end %>	
+    <hr />
+  </div>
+<% end %>
+<% end %>

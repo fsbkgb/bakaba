@@ -3,7 +3,7 @@
     <% @categories.each do |category| %> 
       [
       <% Board.where(:category_id => category.id, :hidden => false).asc(:abbreviation).each do |board| %>		
-        /<%= link_to board.abbreviation, board.abbreviation, {:title => board.title} %>/		
+        /<%= link_to board.abbreviation, '/'+board.abbreviation, {:title => board.title} %>/		
       <% end %>
       ]
       &ndash;

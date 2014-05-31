@@ -5,7 +5,6 @@
     <%= link_to "Log out", log_out_path %>
   <% end %>
 </div>
-<% cache 'title_'+@board.abbreviation do %>
 <div class="pagetitle">
   /<%= @board.abbreviation %>/ &ndash; <%= @board.title %>
   <small>[
@@ -17,4 +16,3 @@
   ]</small>
   <hr />
 </div>
-<% end %>

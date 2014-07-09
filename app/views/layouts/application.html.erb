@@ -58,13 +58,14 @@
 <script>
   jQuery(".responsive_headline").fitText(1.2, { minFontSize: '16px', maxFontSize: '26px' })
 </script>
-
+<%= render :partial => "layouts/metrika" rescue nil %>
 </body>
 
 <% else %>
 <body>
   <%= yield %>
   <%= javascript_include_tag "application" %>
+  <%= render :partial => "layouts/metrika" rescue nil %>
 </body>
 <% end %>
 </html>

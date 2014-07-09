@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @boards = Board.all
     @categories = Category.all
     @post = Post.find params[:post_id]
+    @comments = @post.comments.asc(:number)
     @board = Board.find(@post.board_abbreviation)
     if @post.title?
       @title = "| "+@board.title+" | "+@post.title

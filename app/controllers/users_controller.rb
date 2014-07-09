@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :set_current_user
-#  load_and_authorize_resource :find_by => :name
+  load_and_authorize_resource :find_by => :name
   
   def index
     @users = User.all

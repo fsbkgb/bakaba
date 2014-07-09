@@ -4,12 +4,13 @@ A wakaba like imageboard on Rails 3.2 with a MongoDB
 
 1. `bundle install`
 2. setup your recaptcha keys in `config/initializers/recaptcha.rb` and configure your database in `config/mongoid.yml`
-3. (re)start your server
-4. go to `yourboard.org/users` and create user with 'adm' role
-5. comment out 4th line in `users_controller.rb`
-0. restart your server
-6. go to `yourboard.org/log_in` and log in as administrator
-7. create categories and boards here: `yourboard.org/boards`
+3. `bundle exec rails console`
+4. `user = User.new(name: 'admin_name', role: 'adm', password: 'admin_pass')`
+5. `user.save`
+0. start your server
+6. go to `yourboard.org/log_in` and log in with 'admin_name' and 'admin_pass'
+7. create boards here: `yourboard.org/boards`
+9000. add moderators here `yourboard.org/users`
 8. ?????
 9. PROFIT!
 

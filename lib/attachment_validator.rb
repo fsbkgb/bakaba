@@ -1,4 +1,10 @@
 class AttachmentValidator < ActiveModel::Validator
+    
+  def rasparseeley
+    resp = Net::HTTP.get_response(URI.parse(@source))
+    data = resp.body
+    @result = JSON.parse(data)
+  end
 
   def validate(record)
     if record.pic_file_name
@@ -13,13 +19,22 @@ class AttachmentValidator < ActiveModel::Validator
 
       if record.media.match(youtube_regex) or record.media.match(vimeo_regex) or record.media.match(vocaroo_regex)
         record.media.gsub(youtube_regex) do
-          record.media = '<iframe src=\"http://www.youtube.com/embed/'+$3+'\" width=\"410\" height=\"270\"></iframe>' unless $3.nil?
+          record.media = '<iframe src=\"http://www.youtube.com/embed/'+$3+'\" width=\"410\" height=\"270\"></iframe>' unless $3.nil?	  
+          @source = 'http://gdata.youtube.com/feeds/api/videos/'+$3+'?v=2&alt=json'
+          rasparseeley
+          title = @result["entry"]["title"]["$t"]
+          record.media_description = "Youtube video: "+title
         end
         record.media.gsub(vimeo_regex) do
-          record.media = '<iframe src=\"http://player.vimeo.com/video/'+$2+'\" width=\"410\" height=\"270\"></iframe>' unless $2.nil?
+          record.media = '<iframe src=\"http://player.vimeo.com/video/'+$2+'\" width=\"410\" height=\"270\"></iframe>' unless $2.nil?	  
+          @source = 'http://vimeo.com/api/v2/video/'+$2+'.json'
+          rasparseeley
+          title = @result[0]["title"]
+          record.media_description = "Vimeo video: "+title
         end
         record.media.gsub(vocaroo_regex) do
           record.media = '<embed src=\"http://vocaroo.com/player.swf?playMediaID='+$1+'&amp;autoplay=0\" width=\"148\" height=\"44\" wmode=\"transparent\" type=\"application/x-shockwave-flash\"/><br /><small><a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_mp3\">MP3</a>, <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_ogg\">Ogg</a>, <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_flac\">FLAC</a>, or <a href=\"http://vocaroo.com/media_command.php?media='+$1+'&amp;command=download_wav\">WAV</a>.</small>' unless $1.nil?
+          record.media_description = "Vocaroo voice message"
         end
       else
         record.media = ""

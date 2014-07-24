@@ -9,6 +9,7 @@ class Post
   field :title
   field :content
   field :media
+  field :media_description
   field :number, :type => Integer
   field :password
   field :phash

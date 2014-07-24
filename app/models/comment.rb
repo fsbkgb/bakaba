@@ -8,6 +8,7 @@ class Comment
 
   field :content
   field :media
+  field :media_description
   field :number, :type => Integer
   field :created_at
   field :password

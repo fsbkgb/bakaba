@@ -61,7 +61,7 @@
       <br />
       <div class="pure-g-r">
         <div class="pic pure-u" id="att_<%= target.number %>">
-          [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'>Show attachment</a>]
+          [<a href="#show" onClick='document.getElementById("att_<%= target.number %>").innerHTML = "<%=raw target.media %>";'><%= target.media_description %></a>]
         </div>
         <% if target.content? %>
           <div class="pure-u-3-4">

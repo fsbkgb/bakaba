@@ -7,6 +7,7 @@ gem "mongoid"
 gem "bson_ext"
 gem 'mongoid_slug', "~> 2"
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem "paperclip-ffmpeg"
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'sanitize'

@@ -24,11 +24,11 @@ class Comment
 
   embedded_in :post, :inverse_of => :comments
 
-  has_mongoid_attached_file :pic, :styles => { :small => "180x180>" },
+  has_mongoid_attached_file :pic, styles: lambda { |a| a.instance.check_file_type},
                                   :processors => [:conditional_converter],
                                   :path => ":rails_root/public/pic/:board/:style/:filename",
                                   :url  => "/pic/:board/:style/:filename"
-                                  
+                    
   validates_with AttachmentValidator
 
   before_post_process :rename_file
@@ -49,5 +49,23 @@ class Comment
       post.touch unless post.pinned
     end
   end
+  
+  def check_file_type
+    if is_image_type?
+      {:small => "180x180>"}
+    elsif is_video_type?
+      {:small => { :geometry => "180x180>", :format => 'jpg', :processors => [:ffmpeg] }}
+    else
+      {}
+    end
+  end
+  
+  def is_image_type?
+    pic_content_type =~ %r(image)
+  end
 
+  def is_video_type?
+    pic_content_type =~ %r(video)
+  end
+  
 end

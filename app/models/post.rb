@@ -26,7 +26,7 @@ class Post
 
   index ({ updated_at: 1 })
 
-  has_mongoid_attached_file :pic, :styles => { :small => "220x220>", :catalog => "100x100>" },
+  has_mongoid_attached_file :pic, styles: lambda { |a| a.instance.check_file_type},
                                   :processors => [:conditional_converter],
                                   :path => ":rails_root/public/pic/:board/:style/:filename",
                                   :url  => "/pic/:board/:style/:filename"
@@ -50,6 +50,24 @@ class Post
       post = Post.where(board_abbreviation: board.abbreviation).ascending(:updated_at).first
       post.destroy
     end
+  end
+  
+  def check_file_type
+    if is_image_type?
+      {:small => "220x220>", :catalog => "100x100>"}
+    elsif is_video_type?
+      {:small => { :geometry => "220x220>", :format => 'jpg', :processors => [:ffmpeg] }, :catalog => { :geometry => "100x100>", :format => 'jpg', :processors => [:ffmpeg] }}
+    else
+      {}
+    end
+  end
+  
+  def is_image_type?
+    pic_content_type =~ %r(image)
+  end
+
+  def is_video_type?
+    pic_content_type =~ %r(video)
   end
 
 end

@@ -42,13 +42,13 @@
     </div>
     <div class="pure-g-r">
       <div class="pic pure-u">
-        <%= link_to(target.pic.url, :class=> "lightbox_trigger") do %>
-          <% if catalogue == true  %>
-            <%= image_tag target.pic.url(:catalog) %>
-          <% else %>
-            <%= image_tag target.pic.url(:small) %>
-          <% end %>
+      <%= link_to(target.pic.url, :class=> target.pic.url.match(/\.webm/) ? "webm_trigger" : "lightbox_trigger", :target=> "_blank") do %>
+        <% if catalogue == true  %>
+          <%= image_tag target.pic.url(:catalog) %>
+        <% else %>
+          <%= image_tag target.pic.url(:small) %>
         <% end %>
+      <% end %>
       </div>
       <% if target.content? %>
         <div class="pure-u-3-4">

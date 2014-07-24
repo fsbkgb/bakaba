@@ -169,3 +169,9 @@ pre {
     position: absolute;
     padding: 0;
 }
+
+a[href*='.webm'] > img {
+   border-color: #008000;
+   border-style: dashed;
+   border-width: thin;
+}

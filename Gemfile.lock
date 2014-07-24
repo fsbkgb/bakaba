@@ -86,6 +86,9 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
+    paperclip-ffmpeg (1.2.0)
+      paperclip (>= 2.5.2)
+      rails
     polyglot (0.3.5)
     rack (1.4.5)
     rack-cache (1.2)
@@ -164,6 +167,7 @@ DEPENDENCIES
   mongoid
   mongoid-paperclip
   mongoid_slug (~> 2)
+  paperclip-ffmpeg
   rails (~> 3.2)
   recaptcha
   rinku

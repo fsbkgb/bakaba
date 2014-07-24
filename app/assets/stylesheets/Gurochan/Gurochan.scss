@@ -24,7 +24,7 @@ a {
   &:hover { color: rgb(128, 0, 0); }
 }
 
-.reply, div#pop-up {
+.reply, [id^='pop-up'] {
   @include reply;
   background:$replybackground;
   border: solid 1px $border;

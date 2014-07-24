@@ -65,6 +65,7 @@
 <body>
   <%= yield %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] if params[:controller] == 'posts' %>
   <%= render :partial => "layouts/metrika" rescue nil %>
 </body>
 <% end %>

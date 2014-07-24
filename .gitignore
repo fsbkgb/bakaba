@@ -1,4 +1,5 @@
 .bundle
+.directory
 db/*.sqlite3
 log/*.log
 tmp/**/*
@@ -17,4 +18,5 @@ vendor/bundle/*
 .sass-cache/
 .idea/
 .kateproject
+.kateproject.d/
 /app/views/layouts/_metrika.html.erb

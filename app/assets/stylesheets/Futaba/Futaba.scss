@@ -21,7 +21,7 @@ a {
   color:$maincolor;
 }
 
-.reply, div#pop-up {
+.reply, [id^='pop-up'] {
   @include reply;
   @include rounded-corners;
   background:$replybackground;

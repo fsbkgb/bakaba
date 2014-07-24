@@ -107,14 +107,6 @@ hr {
   margin: 0.5em;
 }
 
-div#pop-up {
-  display:none;
-  position:absolute;
-  -moz-box-shadow: 0 0 15px rgba(0,0,0,0.7);
-  -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.7);
-  box-shadow: 0 0 15px rgba(0,0,0,0.7)
-}
-
 body {
   margin: auto;
   max-width: 1200px;
@@ -169,4 +161,11 @@ pre {
   width: auto;
   max-height: 600px;
   font-size: 12px;
+}
+[id^='pop-up'] {
+    -moz-box-shadow: 0 0 15px rgba(0,0,0,0.7);-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.7); box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    background-color: inherit;
+    display: none;
+    position: absolute;
+    padding: 0;
 }

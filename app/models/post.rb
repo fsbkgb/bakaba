@@ -56,7 +56,7 @@ class Post
     if is_image_type?
       {:small => "220x220>", :catalog => "100x100>"}
     elsif is_video_type?
-      {:small => { :geometry => "220x220>", :format => 'jpg', :processors => [:ffmpeg] }, :catalog => { :geometry => "100x100>", :format => 'jpg', :processors => [:ffmpeg] }}
+      {:small => { :geometry => "220x220>", :format => 'jpg', :time => 1, :processors => [:ffmpeg] }, :catalog => { :geometry => "100x100>", :format => 'jpg', :time => 1, :processors => [:ffmpeg] }}
     else
       {}
     end

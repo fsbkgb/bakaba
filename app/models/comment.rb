@@ -54,7 +54,7 @@ class Comment
     if is_image_type?
       {:small => "180x180>"}
     elsif is_video_type?
-      {:small => { :geometry => "180x180>", :format => 'jpg', :processors => [:ffmpeg] }}
+      {:small => { :geometry => "180x180>", :format => 'jpg', :time => 1, :processors => [:ffmpeg] }}
     else
       {}
     end

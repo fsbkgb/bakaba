@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
             $('body').append(lightbox);
             //Click anywhere on the page to get rid of lightbox window
             $("#lightbox").click(function() { //must use live, as the lightbox element is inserted into the DOM
-               $('#lightbox').fadeOut(150);
+               $('#lightbox').remove();
             });
         }
     });

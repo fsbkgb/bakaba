@@ -12,3 +12,4 @@
 //= require set_pass
 //= require pin
 //= require popup_img
+//= require popup_vid

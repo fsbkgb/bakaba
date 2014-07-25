@@ -38,7 +38,7 @@
 <% if target.pic.file? or target.media? %>
   <% if target.pic.file? %>
     <div class="file">
-      Click on image for full size view (<%= target.pic_file_size/1024 %> kB)
+      Click on image for preview or <%= link_to "open", target.pic.url, :target=> "_blank" %> in new tab (<%= target.pic_file_size/1024 %> kB)
     </div>
     <div class="pure-g-r">
       <div class="pic pure-u">

@@ -1,7 +1,11 @@
 class AttachmentValidator < ActiveModel::Validator
     
   def rasparseeley
-    resp = Net::HTTP.get_response(URI.parse(@source))
+    uri = URI.parse(@source)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    http.use_ssl = true  
+    resp = http.request(request)
     data = resp.body
     @result = JSON.parse(data)
   end
@@ -20,14 +24,14 @@ class AttachmentValidator < ActiveModel::Validator
       if record.media.match(youtube_regex) or record.media.match(vimeo_regex) or record.media.match(vocaroo_regex)
         record.media.gsub(youtube_regex) do
           record.media = '<iframe src=\"http://www.youtube.com/embed/'+$3+'\" width=\"410\" height=\"270\"></iframe>' unless $3.nil?	  
-          @source = 'http://gdata.youtube.com/feeds/api/videos/'+$3+'?v=2&alt=json'
+	  @source = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id='+$3+'&key='{YOUR_API_KEY} #https://developers.google.com/youtube/registering_an_application#Create_API_Keys
           rasparseeley
-          title = @result["entry"]["title"]["$t"]
+          title = @result["items"][0]["snippet"]["title"]
           record.media_description = "Youtube video: "+title
         end
         record.media.gsub(vimeo_regex) do
           record.media = '<iframe src=\"http://player.vimeo.com/video/'+$2+'\" width=\"410\" height=\"270\"></iframe>' unless $2.nil?	  
-          @source = 'http://vimeo.com/api/v2/video/'+$2+'.json'
+          @source = 'https://vimeo.com/api/v2/video/'+$2+'.json'
           rasparseeley
           title = @result[0]["title"]
           record.media_description = "Vimeo video: "+title

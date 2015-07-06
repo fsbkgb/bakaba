@@ -7,12 +7,12 @@
 </div>
 <div class="pagetitle">
   /<%= @board.abbreviation %>/ &ndash; <%= @board.title %>
-  <small>[
+  <small>
     <% if params[:action] == 'show' %>
-      <%= link_to "Catalog", 'catalog/'+@board.abbreviation, {:title => @board.title} %>
+      [<%= link_to "Catalog", 'catalog/'+@board.abbreviation, {:title => @board.title} %>]
     <% else %>
-      <%= link_to "Board", '/'+@board.abbreviation, {:title => @board.title} %>
+      [<%= link_to "Board", '/'+@board.abbreviation, {:title => @board.title} %>]
     <% end %>
-  ]</small>
+  </small>
   <hr />
 </div>

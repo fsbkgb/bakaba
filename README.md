@@ -1,9 +1,11 @@
 A wakaba like imageboard on Rails 3.2 with a MongoDB
 
 ### Installation:
-
-1. `bundle install`
-2. setup your recaptcha keys in `config/initializers/recaptcha.rb` and configure your database in `config/mongoid.yml`
+2. you need to install `ffmpeg` `imagemagick` `mongodb` on your server
+2. run `bundle install` in source directory
+2. setup your recaptcha keys in `config/initializers/recaptcha.rb`
+2. setup your youtube api key in `lib/attachment_validator.rb` (line 27)
+9000. configure your database in `config/mongoid.yml`
 3. `bundle exec rails console`
 4. `user = User.new(name: 'admin_name', role: 'adm', password: 'admin_pass')`
 5. `user.save`
